@@ -4,7 +4,7 @@ import Order from '../models/Order.js';
 import Product from '../models/Product.js';
 
 const stripe = new Stripe(
-	'sk_test_51O3KI3IoIlHmSK7DWkBgilaHBfx8AZZRobJWPv78kjUfbpnUQQUQAL4DUFCMt6IhLlHDykz4tTIoyunJtrZGEa2k00yg8F05Tn'
+	'sk_test_51Oo9oQDHFpGDAD2lpVA5mhLZTsB4fdxqZweRmYY6o58quBVxxrZPnGtU865h6YL6SmjcIjTuARtCpat45vVCi2E600h4PPyyzp'
 );
 
 const stripeRoute = express.Router();
