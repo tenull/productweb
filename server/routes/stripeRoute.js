@@ -1,21 +1,22 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 import express from 'express';
 import Stripe from 'stripe';
 import Order from '../models/Order.js';
 import Product from '../models/Product.js';
+import { protectRoute } from '../middleware/authMiddleware.js';
 
-const stripe = new Stripe(
-	'sk_test_51Oo9oQDHFpGDAD2lpVA5mhLZTsB4fdxqZweRmYY6o58quBVxxrZPnGtU865h6YL6SmjcIjTuARtCpat45vVCi2E600h4PPyyzp'
-);
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 const stripeRoute = express.Router();
 
 const stripePayment = async (req, res) => {
 	const data = req.body;
-	console.log(req.body);
 
 	let lineItems = [];
 
-	if (data.shipping === 14.99) {
+	if (data.shipping == 14.99) {
 		lineItems.push({
 			price: process.env.EXPRESS_SHIPPING_ID,
 			quantity: 1,
@@ -49,7 +50,7 @@ const stripePayment = async (req, res) => {
 		shippingAddress: data.shippingAddress,
 		shippingPrice: data.shipping,
 		subtotal: data.subtotal,
-		totalPrice: data.subtotal + data.shipping,
+		totalPrice: Number(data.subtotal + data.shipping).toFixed(2),
 	});
 
 	const newOrder = await order.save();
@@ -68,6 +69,6 @@ const stripePayment = async (req, res) => {
 	);
 };
 
-stripeRoute.route('/').post(stripePayment);
+stripeRoute.route('/').post(protectRoute, stripePayment);
 
 export default stripeRoute;

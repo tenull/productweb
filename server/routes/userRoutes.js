@@ -4,7 +4,7 @@ import asyncHandler from 'express-async-handler';
 import jwt from 'jsonwebtoken';
 import { sendVerificationEmail } from '../middleware/sendVerificationEmail.js';
 import { sendPasswordResetEmail } from '../middleware/sendPasswordResetEmail.js';
-import { protectRoute,admin } from '../middleware/authMiddleware.js';
+import { protectRoute, admin } from '../middleware/authMiddleware.js';
 import Order from '../models/Order.js';
 
 const userRoutes = express.Router();
@@ -181,29 +181,37 @@ const getUserOrders = asyncHandler(async (req, res) => {
 	}
 });
 
-const getUsers = asyncHandler(async(req,res)=>{
-    const users = await User.find({})
-    res.json();
-})
+const getUsers = asyncHandler(async (req, res) => {
+	const users = await User.find({});
+	res.json(users);
+});
 
-const deleteUser = asyncHandler(async(req,res)=>{
-    try {
-        const user = await User.findByIdAndRemove(req.params.id)
-        res.json(user)
-    } catch (error) {
-        res.status(404)
-        throw new Error ('This use could not be found.')
-    }
-})
+const deleteUser = asyncHandler(async (req, res) => {
+	try {
+		const userId = req.params.id;
+		console.log("Deleting user with ID:", userId);
+		const user = await User.findByIdAndDelete(userId); // Módosított sor
+		console.log("Deleted user:", user);
+		if (!user) {
+			return res.status(404).json({ message: 'User not found.' });
+		}
+		res.json(user);
+	} catch (error) {
+		console.error("Error deleting user:", error);
+		res.status(500).json({ message: 'Internal server error.' });
+	}
+});
+
+
 
 userRoutes.route('/login').post(loginUser);
 userRoutes.route('/register').post(registerUser);
 userRoutes.route('/verify-email').get(protectRoute, verifyEmail);
 userRoutes.route('/password-reset-request').post(passwordResetRequest);
-userRoutes.route('/password-reset').post(protectRoute,passwordReset);
+userRoutes.route('/password-reset').post(protectRoute, passwordReset);
 userRoutes.route('/google-login').post(googleLogin);
 userRoutes.route('/:id').get(protectRoute, getUserOrders);
-userRoutes.route('/').get(protectRoute,admin,getUsers);
-userRoutes.route('/:id').delete(protectRoute,admin,deleteUser);
+userRoutes.route('/').get(protectRoute, admin, getUsers);
+userRoutes.route('/:id').delete(protectRoute, admin, deleteUser);
 
 export default userRoutes;

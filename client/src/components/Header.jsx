@@ -145,7 +145,10 @@ const Header = () => {
                                {userInfo.isAdmin && (
                                 <>
                                 <MenuDivider/>
-                                <MenuItem as={ReactLink} to='/admin-console'>Admin Console</MenuItem>
+                                <MenuItem as={ReactLink} to='/admin-console'>
+									<MdOutlineAdminPanelSettings/>
+									<Text ml='2'>Admin Console</Text>
+									</MenuItem>
                                 </>
                                )}
                                <MenuDivider/>
