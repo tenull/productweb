@@ -23,7 +23,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProducts, resetProductError } from '../redux/actions/productActions';
 import ProductTableItem from './ProductTableItem';
-// import AddNewProduct from './AddNewProduct';
+import AddNewProduct from './AddNewProduct';
 
 const ProductsTab = () => {
 	const dispatch = useDispatch();
@@ -76,7 +76,7 @@ const ProductsTab = () => {
 							</h2>
 							<AccordionPanel pb='4'>
 								<Table>
-									{/* <AddNewProduct /> */}
+									<AddNewProduct />
 								</Table>
 							</AccordionPanel>
 						</AccordionItem>

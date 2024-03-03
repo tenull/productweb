@@ -41,7 +41,7 @@ const ProductCard = ({ product, loading }) => {
 	return (
 		<Skeleton isLoaded={!loading}>
 			<Box
-				_hover={{ transform: 'scale(1.1)', transitionDuration: '0.5s' }}
+				_hover={{ transform: 'scale(1.04)', transitionDuration: '0.5s' }}
 				borderWidth='1px'
 				overflow='hidden'
 				p='4'
