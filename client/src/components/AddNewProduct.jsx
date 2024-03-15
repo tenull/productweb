@@ -1,4 +1,4 @@
-import { Tr,Td,Button,VStack,Textarea,Tooltip,Input,FormControl,Switch,FormLabel,Text,Badge,Spacer } from "@chakra-ui/react";
+import { Tr, Td,Button,VStack,Textarea,Tooltip,Input,FormControl,Switch,FormLabel,Text,Badge,Spacer, Tbody } from "@chakra-ui/react";
 import { useState } from "react";
 import { MdDriveFolderUpload } from "react-icons/md";
 import { UseDispatch, useDispatch } from "react-redux";
@@ -11,7 +11,7 @@ const AddNewProduct = () => {
     const [category,setCategory]=useState('')
     const [stock,setStock]=useState('')
     const [price,setPrice]=useState('')
-    const [productIsNew,setProductIsNew]=useState('')
+    const [productIsNew,setProductIsNew]=useState(false)
     const [description,setDescription]=useState('')
     const [imageOne,setImageOne]=useState('')
     const [imageTwo,setImageTwo]=useState('')
@@ -32,6 +32,7 @@ const AddNewProduct = () => {
 
 
     return ( 
+        <Tbody>
         <Tr>
             <Td>
                 <Text fontSize='sm'>Image File Name 1</Text>
@@ -79,6 +80,7 @@ const AddNewProduct = () => {
                 </Td>
             </Td>
         </Tr>
+        </Tbody>
      );
 }
  

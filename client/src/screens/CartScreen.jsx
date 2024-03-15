@@ -32,16 +32,16 @@ const CartScreen = () => {
 			) : error ? (
 				<Alert status='error'>
 					<AlertIcon />
-					<AlertTitle>We are sorry!</AlertTitle>
+					<AlertTitle>Sajnáljuk!</AlertTitle>
 					<AlertDescription>{error}</AlertDescription>
 				</Alert>
 			) : cartItems.length <= 0 ? (
 				<Alert status='warning'>
 					<AlertIcon />
-					<AlertTitle>Your cart is empty.</AlertTitle>
+					<AlertTitle>A kosarad üres.</AlertTitle>
 					<AlertDescription>
 						<Link as={ReactLink} to='/products'>
-							Click here to see your products.
+							Kattins ide , hogy a termékeinket megtekintse
 						</Link>
 					</AlertDescription>
 				</Alert>
@@ -53,7 +53,7 @@ const CartScreen = () => {
 						spacing={{ base: '8', md: '16' }}>
 						<Stack spacing={{ base: '8', md: '10' }} flex='2'>
 							<Heading fontSize='2xl' fontWeight='extrabold'>
-								Shopping Cart
+								Kosár
 							</Heading>
 
 							<Stack spacing='6'>
@@ -66,9 +66,9 @@ const CartScreen = () => {
 							<OrderSummary />
 
 							<HStack mt='6' fontWeight='semibold'>
-								<p>or</p>
+								<p>vagy </p>
 								<Link as={ReactLink} to='/products' color={mode('cyan.500', 'cyan.200')}>
-									Continue Shopping
+									Folytassa a vásárlást
 								</Link>
 							</HStack>
 						</Flex>

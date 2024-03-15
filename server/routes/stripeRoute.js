@@ -11,62 +11,83 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 const stripeRoute = express.Router();
 
+const calculateDiscount = (amount) => {
+    let discount = 0;
+    if (amount >= 5000 && amount < 10000) {
+        discount = Math.round(amount * 0.03); // 3% kedvezmény
+    } else if (amount >= 10000) {
+        discount = Math.round(amount * 0.06); // 6% kedvezmény
+    }
+    return discount;
+}
+
+
+
 const stripePayment = async (req, res) => {
-	const data = req.body;
+    const data = req.body;
 
-	let lineItems = [];
+    let lineItems = [];
+    let subtotal = 0;
 
-	if (data.shipping == 14.99) {
-		lineItems.push({
-			price: process.env.EXPRESS_SHIPPING_ID,
-			quantity: 1,
-		});
-	} else {
-		lineItems.push({
-			price: process.env.STANDARD_SHIPPING_ID,
-			quantity: 1,
-		});
-	}
+    data.cartItems.forEach((item) => {
+        subtotal += item.price * item.qty;
+        lineItems.push({
+            price: item.stripeId,
+            quantity: item.qty,
+        });
+    });
 
-	data.cartItems.forEach((item) => {
-		lineItems.push({
-			price: item.stripeId,
-			quantity: item.qty,
-		});
-	});
+    const discount = calculateDiscount(subtotal);
+    const totalAmount = subtotal - discount;
 
-	const session = await stripe.checkout.sessions.create({
-		line_items: lineItems,
-		mode: 'payment',
-		success_url: 'http://localhost:3000/success',
-		cancel_url: 'http://localhost:3000/cancel',
-	});
+    const order = new Order({
+        orderItems: data.cartItems,
+        user: data.userInfo._id,
+        username: data.userInfo.name,
+        email: data.userInfo.email,
+        shippingAddress: data.shippingAddress,
+        shippingPrice: data.shipping,
+        subtotal: subtotal,
+        totalPrice: Number(totalAmount + data.shipping).toFixed(2),
+    });
 
-	const order = new Order({
-		orderItems: data.cartItems,
-		user: data.userInfo._id,
-		username: data.userInfo.name,
-		email: data.userInfo.email,
-		shippingAddress: data.shippingAddress,
-		shippingPrice: data.shipping,
-		subtotal: data.subtotal,
-		totalPrice: Number(data.subtotal + data.shipping).toFixed(2),
-	});
+    const newOrder = await order.save(); // A rendelés mentése az adatbázisba
 
-	const newOrder = await order.save();
+    let orderId = newOrder._id.toString();
 
-	data.cartItems.forEach(async (cartItem) => {
-		let product = await Product.findById(cartItem.id);
-		product.stock = product.stock - cartItem.qty;
-		product.save();
-	});
+    data.cartItems.forEach(async (cartItem) => {
+        let product = await Product.findById(cartItem.id);
+        product.stock = product.stock - cartItem.qty;
+        product.save();
+    });
 
-	res.send(
-		JSON.stringify({
-			orderId: newOrder._id.toString(),
-			url: session.url,
-		})
-	);
+    // Fizetési opció alapján döntjük el a success_url értékét
+    const successUrl = data.paymentOption === 'withoutExpress' ? 'http://localhost:3000/success' : 'http://localhost:3000/';
+
+    const session = await stripe.checkout.sessions.create({
+        payment_method_types: ['card'],
+        billing_address_collection: 'required',
+        line_items: [{
+            price_data: {
+                currency: 'huf',
+                unit_amount: totalAmount * 100, // A fizetendő összeg centekben
+                product_data: {
+                    name: 'Fizetés',
+                },
+            },
+            quantity: 1,
+        }],
+        mode: 'payment',
+        success_url: successUrl, // A fizetés sikeressége esetén a megfelelő URL-re irányítunk át
+        cancel_url: 'http://localhost:3000/cancel',
+    });
+
+    res.send(
+        JSON.stringify({
+            orderId: orderId,
+            url: session.url,
+        })
+    );
 };
 
 stripeRoute.route('/').post(protectRoute, stripePayment);

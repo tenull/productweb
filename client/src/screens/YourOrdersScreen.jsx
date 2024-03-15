@@ -44,7 +44,7 @@ const YourOrdersScreen = () => {
 			) : error ? (
 				<Alert status='error'>
 					<AlertIcon />
-					<AlertTitle>We are sorry!</AlertTitle>
+					<AlertTitle>Sajnáljuk!</AlertTitle>
 					<AlertDescription>{error}</AlertDescription>
 				</Alert>
 			) : (
@@ -53,11 +53,11 @@ const YourOrdersScreen = () => {
 						<Table variant='striped'>
 							<Thead>
 								<Tr>
-									<Th>Order Id</Th>
-									<Th>Oder Date</Th>
-									<Th>Paid Total</Th>
-									<Th>Items</Th>
-									<Th>Print Receipt</Th>
+									<Th>Rendelés Id</Th>
+									<Th>Megrendelés dátuma</Th>
+									<Th>Teljes összeg</Th>
+									<Th>Termékek</Th>
+									<Th>Nyugta</Th>
 								</Tr>
 							</Thead>
 							<Tbody>
@@ -76,7 +76,7 @@ const YourOrdersScreen = () => {
 											))}
 										</Td>
 										<Td>
-											<Button variant='outline'>Receipt</Button>
+											<Button variant='outline'>Nyugta</Button>
 										</Td>
 									</Tr>
 								))}

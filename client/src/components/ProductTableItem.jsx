@@ -99,11 +99,11 @@ const ProductTableItem = ({ product }) => {
 						<Input size='sm' value={stock} onChange={(e) => setStock(e.target.value)} />
 						<FormControl display='flex' alignItems='center'>
 							<FormLabel htmlFor='productIsNewFlag' mb='0' fontSize='sm'>
-								Enable
+								Elérhető
 								<Badge rounded='full' px='1' mx='1' fontSize='0.8em' colorScheme='green'>
-									New
+									AKCIÓ
 								</Badge>
-								badge ?
+								jelvény ?
 							</FormLabel>
 							<Switch id='productIsNewFlag' onChange={() => setProductIsNew(!productIsNew)} isChecked={productIsNew} />
 						</FormControl>
@@ -113,11 +113,11 @@ const ProductTableItem = ({ product }) => {
 					<VStack>
 						<Button colorScheme='red' w='160px' variant='outline' onClick={openDeleteConfirmBox}>
 							<DeleteIcon mr='5px' />
-							Remove Product
+							Termék eltávolítása
 						</Button>
 						<Button colorScheme='green' w='160px' variant='outline' onClick={onSaveProduct}>
 							<MdOutlineDataSaverOn style={{ marginRight: '5px' }} />
-							Save Changes
+							Változások mentése
 						</Button>
 					</VStack>
 				</Td>

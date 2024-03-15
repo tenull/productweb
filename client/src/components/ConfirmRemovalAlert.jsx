@@ -22,13 +22,13 @@ const ConfirmRemovalAlert = ({ isOpen, onClose, cancelRef, itemToDelete, deleteA
 					<AlertDialogHeader fontSize='lg' fontWeight='bold'>
 						Delete {itemToDelete.name}
 					</AlertDialogHeader>
-					<AlertDialogBody>Are you sure? You can't undo this action afterwards.</AlertDialogBody>
+					<AlertDialogBody>Biztos vagy benne? Ezt a műveletet utólag nem lehet visszacsinálni.</AlertDialogBody>
 					<AlertDialogFooter>
 						<Button ref={cancelRef} onClick={onClose}>
-							Cancel
+							Mégsem
 						</Button>
 						<Button colorScheme='red' onClick={onDeleteItem} ml={3}>
-							Delete {itemToDelete.name}
+							Törlés {itemToDelete.name}
 						</Button>
 					</AlertDialogFooter>
 				</AlertDialogContent>

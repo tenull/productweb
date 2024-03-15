@@ -50,7 +50,7 @@ const ProductScreen = () => {
 
 		if (reviewed) {
 			toast({
-				description: 'Product review saved.',
+				description: 'Termékről a vélemény mentve lett.',
 				status: 'success',
 				isClosable: 'true',
 			});
@@ -75,7 +75,7 @@ const ProductScreen = () => {
 			dispatch(addCartItem(id, amount));
 		}
 		toast({
-			description: 'Item has been added.',
+			description: 'A tétel hozzá lett adva.',
 			status: 'success',
 			isClosable: true,
 		});
@@ -91,7 +91,7 @@ const ProductScreen = () => {
 		<Wrap spacing='30px' justify='center' minHeight='100vh'>
 			{loading ? (
 				<Stack direction='row' spacing='4'>
-					<Spinner mt='20' thickness='2px' speed='0.65s' emptyColor='gray.200' color='cyan.500' size='xl' />
+					<Spinner mt='20' thickness='2px' speed='0.65s' emptyColor='gray.200' color='red.500' size='xl' />
 				</Stack>
 			) : error ? (
 				<Alert status='error'>
@@ -109,13 +109,13 @@ const ProductScreen = () => {
 						<Stack direction={{ base: 'column', lg: 'row' }} align='flex-start'>
 							<Stack pr={{ base: '0', md: 'row' }} flex='1.5' mb={{ base: '12', md: 'none' }}>
 								{product.productIsNew && (
-									<Badge p='2' rounded='md' w='50px' fontSize='0.8em' colorScheme='green'>
-										New
+									<Badge p='2' rounded='md' w='60px' fontSize='0.8em' colorScheme='green'>
+										AKCIÓ!
 									</Badge>
 								)}
 								{product.stock === 0 && (
 									<Badge rounded='full' w='70px' fontSize='0.8em' colorScheme='red'>
-										sold out
+										ELFOGYOTT
 									</Badge>
 								)}
 								<Heading fontSize='2xl' fontWeight='extrabold'>
@@ -123,23 +123,23 @@ const ProductScreen = () => {
 								</Heading>
 								<Stack spacing='5'>
 									<Box>
-										<Text fontSize='xl'>${product.price}</Text>
+										<Text fontSize='xl'>Ft {product.price}</Text>
 										<Flex>
 											<HStack spacing='2px'>
-												<Star color='cyan.500' />
+												<Star color='red.500' />
 												<Star rating={product.rating} star={2} />
 												<Star rating={product.rating} star={3} />
 												<Star rating={product.rating} star={4} />
 												<Star rating={product.rating} star={5} />
 											</HStack>
 											<Text fontSize='md' fontWeight='bold' ml='4px'>
-												{product.numberOfReviews} Reviews
+												{product.numberOfReviews} Vélemények
 											</Text>
 										</Flex>
 									</Box>
 									<Text>{product.subtitle}</Text>
 									<Text>{product.description}</Text>
-									<Text fontWeight='bold'>Quantity</Text>
+									<Text fontWeight='bold'>Darab</Text>
 									<Flex w='170px' p='5px' border='1px' borderColor='gray.200' alignItems='center'>
 										<Button isDisabled={amount <= 1} onClick={() => changeAmount('minus')}>
 											<MinusIcon />
@@ -150,32 +150,32 @@ const ProductScreen = () => {
 										</Button>
 									</Flex>
 									<Badge fontSize='lg' width='170px' textAlign='center' colorScheme='gray'>
-										In Stock: {product.stock}
+										Készleten : {product.stock}
 									</Badge>
 									<Button
 										variant='outline'
 										isDisabled={product.stock === 0}
-										colorScheme='cyan'
+										colorScheme='red'
 										onClick={() => addItem()}>
-										Add to cart
+										Kosárba
 									</Button>
 									<Stack width='270px'>
 										<Flex alignItems='center'>
 											<BiPackage size='20px' />
 											<Text fontWeight='medium' fontSize='sm' ml='2'>
-												Shipped in 2 - 3 days
+												1 órán belül kiszállítva amennyiben rendelését 12-18óra között adta le.
 											</Text>
 										</Flex>
-										<Flex alignItems='center'>
+										{/* <Flex alignItems='center'>
 											<BiCheckShield size='20px' />
 											<Text fontWeight='medium' fontSize='sm' ml='2'>
 												2 year extended warranty
 											</Text>
-										</Flex>
+										</Flex> */}
 										<Flex alignItems='center'>
 											<BiSupport size='20px' />
 											<Text fontWeight='medium' fontSize='sm' ml='2'>
-												We're here for you 24/7
+												Akár telefonon is leadhatja rendelését
 											</Text>
 										</Flex>
 									</Stack>
@@ -204,9 +204,9 @@ const ProductScreen = () => {
 										isDisabled={hasUserReviewed()}
 										my='20px'
 										w='140px'
-										colorScheme='cyan'
+										colorScheme='red'
 										onClick={() => setReviewBoxOpen(!reviewBoxOpen)}>
-										Write a review
+										Írjon véleményt
 									</Button>
 								</Tooltip>
 								{reviewBoxOpen && (
@@ -246,9 +246,9 @@ const ProductScreen = () => {
 											isLoading={buttonLoading}
 											loadingText='Saving'
 											w='140px'
-											colorScheme='cyan'
+											colorScheme='red'
 											onClick={() => onSubmit()}>
-											Publish review
+											Vélemény közzététele
 										</Button>
 									</Stack>
 								)}
@@ -256,13 +256,13 @@ const ProductScreen = () => {
 						)}
 						<Stack>
 							<Text fontSize='xl' fontWeight='bold'>
-								Reviews
+								Vélemények
 							</Text>
 							<SimpleGrid minChildWidth='300px' spacingX='40px' spacingY='20px'>
 								{product.reviews.map((review) => (
 									<Box key={review._id}>
 										<Flex spcaing='2px' alignItems='center'>
-											<Star color='cyan.500' />
+											<Star color='red.300' />
 											<Star rating={product.rating} star={2} />
 											<Star rating={product.rating} star={3} />
 											<Star rating={product.rating} star={4} />
@@ -273,7 +273,7 @@ const ProductScreen = () => {
 										</Flex>
 										<Box py='12px'>{review.comment}</Box>
 										<Text fontSize='sm' color='gray.400'>
-											by {review.name}, {new Date(review.createdAt).toDateString()}
+											 {review.name}, {new Date(review.createdAt).toDateString()}
 										</Text>
 									</Box>
 								))}

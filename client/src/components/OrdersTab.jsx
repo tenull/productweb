@@ -57,6 +57,7 @@ const OrdersTab = () => {
 
 	const openDeleteConfirmBox = (order) => {
 		setOrderToDelete(order);
+		
 		onOpen();
 	};
 
@@ -64,6 +65,7 @@ const OrdersTab = () => {
 		dispatch(resetErrorAndRemoval());
 		dispatch(setDelivered(order._id));
 	};
+	console.log(orders)
 
 	return (
 		<Box>
@@ -86,32 +88,35 @@ const OrdersTab = () => {
 						<Table variant='simple'>
 							<Thead>
 								<Tr>
-									<Th>Date</Th>
-									<Th>Name</Th>
-									<Th>Email</Th>
-									<Th>Shipping</Th>
-									<Th>Items Ordered</Th>
-									<Th>Shipping Price</Th>
-									<Th>Total</Th>
-									<Th>Delivered</Th>
+									<Th>Dátum</Th>
+									<Th>Név</Th>
+									<Th>email</Th>
+									<Th>Szállítás</Th>
+									<Th>Rendelt termékek</Th>
+									<Th>Fizetési mód</Th>
+									<Th>Összesen</Th>
+									<Th>Kiszállítva</Th>
 								</Tr>
 							</Thead>
 							<Tbody>
 								{orders &&
 									orders.map((order) => (
 										<Tr key={order._id}>
-											<Td>{new Date(order.createdAt).toDateString()}</Td>
+											<Td>{new Date(order.createdAt).toLocaleString()}</Td>
 											<Td>{order.username}</Td>
 											<Td>{order.email}</Td>
 											<Td>
 												<Text>
-													<i>Adress: </i> {order.shippingAddress.address}
+													<i>Cím: </i> {order.shippingAddress.address}
+												</Text>
+												{/* <Text>
+													<i>Város: </i> {order.shippingAddress.postalCode} {order.shippingAddress.city}
+												</Text> */}
+												<Text>
+													<i>Telefonszám: </i> {order.shippingAddress.number}
 												</Text>
 												<Text>
-													<i>City: </i> {order.shippingAddress.postalCode} {order.shippingAddress.city}
-												</Text>
-												<Text>
-													<i>Country: </i> {order.shippingAddress.country}
+													<i>Megjegyzés: </i> {order.shippingAddress.comment}
 												</Text>
 											</Td>
 											<Td>
@@ -121,19 +126,19 @@ const OrdersTab = () => {
 													</Text>
 												))}
 											</Td>
-											<Td>${order.shippingPrice}</Td>
-											<Td>${order.totalPrice}</Td>
+											<Td>{order && parseFloat(order.shippingPrice) === 4.99 ? 'Fizetés a helyszínen': 'Fizetés bankkártyával'}</Td>
+											<Td>{order.totalPrice - order.shippingPrice} Ft</Td>
 											<Td>{order.isDelivered ? <CheckCircleIcon /> : 'Pending'}</Td>
 											<Td>
 												<Flex direction='column'>
 													<Button variant='outline' onClick={() => openDeleteConfirmBox(order)}>
 														<DeleteIcon mr='5px' />
-														Remove Order
+														Rendelés törlése
 													</Button>
 													{!order.isDelivered && (
 														<Button mt='4px' variant='outline' onClick={() => onSetToDelivered(order)}>
 															<TbTruckDelivery />
-															<Text ml='5px'>Delivered</Text>
+															<Text ml='5px'>Kiszállítva</Text>
 														</Button>
 													)}
 												</Flex>

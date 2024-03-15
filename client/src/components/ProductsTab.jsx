@@ -37,7 +37,7 @@ const ProductsTab = () => {
 
 		if (productUpdate) {
 			toast({
-				description: 'Product has been updated.',
+				description: 'A termék frissítve lett.',
 				status: 'success',
 				isClosable: true,
 			});
@@ -68,7 +68,7 @@ const ProductsTab = () => {
 									<Box flex='1' textAlign='right'>
 										<Box>
 											<Text mr='8px' fontWeight='bold'>
-												Add a new Product
+											Új termék hozzáadása
 											</Text>
 										</Box>
 									</Box>
@@ -84,12 +84,12 @@ const ProductsTab = () => {
 					<Table variant='simple' size='lg'>
 						<Thead>
 							<Tr>
-								<Th>Images</Th>
-								<Th>Description</Th>
-								<Th>Brand & Name</Th>
-								<Th>StripeId & Subtitle</Th>
-								<Th>Category & Price</Th>
-								<Th>Stock & new Badge</Th>
+								<Th>Képek</Th>
+								<Th>Leírás</Th>
+								<Th>Márka és Név</Th>
+								<Th>StripeId & Alcím</Th>
+								<Th>Kategória és Ár</Th>
+								<Th>Készlet és Akció jelvény</Th>
 							</Tr>
 						</Thead>
 						<Tbody>

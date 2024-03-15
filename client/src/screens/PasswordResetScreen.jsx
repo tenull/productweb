@@ -48,13 +48,13 @@ const PasswordResetScreen = () => {
 		<Center minH='90vh'>
 			<VStack>
 				<Text my='10' fontSize='xl'>
-					Password reset successful!
+				Jelszó visszaállítása sikeres!
 				</Text>
 				<Button as={ReactLink} to='/login' variant='outline' colorScheme='cyan' w='300px'>
-					Log in
+					Bejelentkezés
 				</Button>
 				<Button as={ReactLink} to='/products' variant='outline' colorScheme='cyan' w='300px'>
-					Products
+					Termékek
 				</Button>
 			</VStack>
 		</Center>
@@ -63,11 +63,11 @@ const PasswordResetScreen = () => {
 			initialValues={{ password: '' }}
 			validationSchema={Yup.object({
 				password: Yup.string()
-					.min(1, 'Password is too short - must contain at least 1 character.')
-					.required('Password is required.'),
+					.min(1, 'A jelszó túl rövid - legalább 1 karaktert kell tartalmaznia.')
+					.required('Jelszó megadása szükséges.'),
 				confirmPassword: Yup.string()
-					.min(1, 'Password is too short - must contain at least 1 character.')
-					.required('Password is required.')
+					.min(1, 'A jelszó túl rövid - legalább 1 karaktert kell tartalmaznia.')
+					.required('Jelszó megadása szükséges.')
 					.oneOf([Yup.ref('password'), null], 'Passwords must match'),
 			})}
 			onSubmit={(values) => {
@@ -78,7 +78,7 @@ const PasswordResetScreen = () => {
 					<Stack spacing='8'>
 						<Stack spacing='6'>
 							<Stack spacing={{ base: '2', md: '3' }} textAlign='center'>
-								<Heading size={headingBR}>Reset your password.</Heading>
+								<Heading size={headingBR}>Jelszó visszaállítása.</Heading>
 							</Stack>
 						</Stack>
 						<Box
@@ -95,7 +95,7 @@ const PasswordResetScreen = () => {
 										justifyContent='center'
 										textAlign='center'>
 										<AlertIcon />
-										<AlertTitle>We are sorry!</AlertTitle>
+										<AlertTitle>Sajnáljuk!</AlertTitle>
 										<AlertDescription>{error}</AlertDescription>
 									</Alert>
 								)}
@@ -112,7 +112,7 @@ const PasswordResetScreen = () => {
 								</Stack>
 								<Stack spacing='6'>
 									<Button colorScheme='cyan' size='lg' fontSize='md' isLoading={loading} type='submit'>
-										Set new Password
+									Új jelszó beállítása
 									</Button>
 								</Stack>
 							</Stack>

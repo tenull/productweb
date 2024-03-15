@@ -32,7 +32,7 @@ const ProductCard = ({ product, loading }) => {
 			dispatch(addCartItem(id, 1));
 		}
 		toast({
-			description: 'Item has been added.',
+			description: 'A tétel hozzá lett adva.',
 			status: 'success',
 			isClosable: true,
 		});
@@ -46,6 +46,11 @@ const ProductCard = ({ product, loading }) => {
 				overflow='hidden'
 				p='4'
 				shadow='md'>
+					{product.productIsNew && (
+					<Badge position='absolute' ml='2' colorScheme='purple'>
+						AKCIÓ!
+					</Badge>
+				)}
 				<Image
 					onMouseEnter={() => setIsShown(true)}
 					onMouseLeave={() => setIsShown(false)}
@@ -55,41 +60,40 @@ const ProductCard = ({ product, loading }) => {
 					height='200px'
 				/>
 				{product.stock < 5 ? (
-					<Badge colorScheme='yellow'>only {product.stock} left</Badge>
+					<Badge colorScheme='yellow'>Csak {product.stock}db maradt </Badge>
 				) : product.stock < 1 ? (
-					<Badge colorScheme='red'>Sold out</Badge>
+					<Badge colorScheme='red'>Elfogyott</Badge>
 				) : (
-					<Badge colorScheme='green'>In Stock</Badge>
+					<Badge colorScheme='green'>Elérhető</Badge>
 				)}
-				{product.productIsNew && (
-					<Badge ml='2' colorScheme='purple'>
-						new
-					</Badge>
-				)}
-				<Text noOfLines={1} fontSize='xl' fontWeight='semibold' mt='2'>
-					{product.brand} {` `} {product.name}
+				
+				<Text noOfLines={1} fontSize='xl' display='flex' justifyContent='center' fontWeight='semibold' mt='2'>
+					{product.brand}  
+				</Text>
+				<Text style={{textAlign:'center'}} noOfLines={1} fontSize='md' display='flex' justifyContent='center' fontWeight='' mt='2'>
+					{product.name}
 				</Text>
 				<Text noOfLines={1} fontSize='md' color='gray.600'>
 					{product.subtitle}
 				</Text>
-				<Flex justify='space-between' alignItems='center' mt='2'>
-					<Badge colorScheme='cyan'>{product.category}</Badge>
-					<Text fontSize='xl' fontWeight='semibold' color='cyan.600'>
-						${product.price}
+				<Flex justify='center' alignItems='center' mt='2'>
+					{/* <Badge colorScheme='cyan'>{product.category}</Badge> */}
+					<Text fontSize='xl' fontWeight='semibold' color='red.300'>
+						 {product.price} Ft
 					</Text>
 				</Flex>
 				<Flex justify='space-between' mt='2'>
 					{favorites.includes(product._id) ? (
 						<IconButton
 							icon={<MdOutlineFavorite size='20px' />}
-							colorScheme='cyan'
+							colorScheme='red'
 							size='sm'
 							onClick={() => dispatch(removeFromFavorites(product._id))}
 						/>
 					) : (
 						<IconButton
 							icon={<MdOutlineFavoriteBorder size='20px' />}
-							colorScheme='cyan'
+							colorScheme='red'
 							size='sm'
 							onClick={() => dispatch(addToFavorites(product._id))}
 						/>
@@ -99,7 +103,7 @@ const ProductCard = ({ product, loading }) => {
 						icon={<BiExpand size='20' />}
 						as={ReactLink}
 						to={`/product/${product._id}`}
-						colorScheme='cyan'
+						colorScheme='red'
 						size='sm'
 					/>
 
@@ -108,16 +112,16 @@ const ProductCard = ({ product, loading }) => {
 						hasArrow
 						label={
 							!cartPlusDisabled
-								? 'You reached the maximum quantity jof the product. '
+								? 'Elérte a termék maximális mennyiségét. '
 								: product.stock <= 0
-								? 'Out of stock'
+								? 'Elfogyott'
 								: ''
 						}>
 						<IconButton
 							isDisabled={product.stock <= 0 || cartPlusDisabled}
 							onClick={() => addItem(product._id)}
 							icon={<TbShoppingCartPlus size='20' />}
-							colorScheme='cyan'
+							colorScheme='red'
 							size='sm'
 						/>
 					</Tooltip>

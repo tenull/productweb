@@ -23,10 +23,10 @@ const AdminConsoleScreen = () => {
 					</Heading>
 					<Tabs size='md' variant='enclosed'>
 						<TabList>
-							<Tab>Users</Tab>
-							<Tab>Products</Tab>
-							<Tab>Reviews</Tab>
-							<Tab>Orders</Tab>
+							<Tab>Felhasználók</Tab>
+							<Tab>Termékek</Tab>
+							<Tab>Vélemények</Tab>
+							<Tab>Rendelések</Tab>
 						</TabList>
 						<TabPanels>
 							<TabPanel>

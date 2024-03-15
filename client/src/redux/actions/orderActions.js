@@ -6,31 +6,33 @@ export const setAddress = (data) => (dispatch) => {
 };
 
 export const setPayment = () => async (dispatch, getState) => {
-	const {
-		cart: { cartItems, subtotal, shipping },
-		order: { shippingAddress },
-		user: { userInfo },
-	} = getState();
+    const {
+        cart: { cartItems, subtotal, shipping },
+        order: { shippingAddress },
+        user: { userInfo },
+    } = getState();
 
-	console.log(shippingAddress);
+    console.log(shippingAddress);
 
-	const newOrder = { subtotal, shipping, shippingAddress, cartItems, userInfo };
+    // Új opció hozzáadása: fizetési opció elküldése az axios kérésben
+    const newOrder = { subtotal, shipping, shippingAddress, cartItems, userInfo, paymentOption: 'withoutExpress' }; // Itt állítsd be a fizetési opciót
 
-	try {
-		const config = { headers: { Authorization: `Bearer ${userInfo.token}`, 'Content-Type': 'application/json' } };
+    try {
+        const config = { headers: { Authorization: `Bearer ${userInfo.token}`, 'Content-Type': 'application/json' } };
 
-		const { data } = await axios.post('api/checkout', newOrder, config);
-		window.location.assign(data.url);
-	} catch (error) {
-		setError(
-			error.response && error.response.data.message
-				? error.response.data.message
-				: error.message
-				? error.message
-				: 'An expected error has occured. Please try again later.'
-		);
-	}
+        const { data } = await axios.post('api/checkout', newOrder, config);
+        window.location.assign(data.url);
+    } catch (error) {
+        setError(
+            error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message
+                ? error.message
+                : 'An expected error has occured. Please try again later.'
+        );
+    }
 };
+
 
 export const resetOrder = () => async (dispatch) => {
 	dispatch(clearOrder());

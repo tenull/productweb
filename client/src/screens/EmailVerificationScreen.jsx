@@ -28,7 +28,7 @@ const EmailVerificationScreen = () => {
 			<AbsoluteCenter axis='both'>
 				{loading ? (
 					<Box textAlign='center'>
-						<Text fontSize='3xl'>We are working on verifying your email.</Text>
+						<Text fontSize='3xl'>Azon dolgozunk, hogy ellenőrizzük az e-mail címét.</Text>
 						<Spinner size='xl' />
 					</Box>
 				) : error === null ? (
@@ -40,8 +40,8 @@ const EmailVerificationScreen = () => {
 						justifyContent='center'
 						textAlign='center'>
 						<AlertIcon boxSize='16' size='xl' />
-						<AlertTitle>Thanks for verifying your email.</AlertTitle>
-						<AlertDescription fontSize='xl'>You can close this window now.</AlertDescription>
+						<AlertTitle>Köszönöm, hogy ellenőrizte az e-mail címét.</AlertTitle>
+						<AlertDescription fontSize='xl'>Ezt az ablakot most bezárhatja.</AlertDescription>
 					</Alert>
 				) : (
 					<Alert
@@ -52,7 +52,7 @@ const EmailVerificationScreen = () => {
 						justifyContent='center'
 						textAlign='center'>
 						<AlertIcon boxSize='16' size='xl' />
-						<AlertTitle>We are sorry!</AlertTitle>
+						<AlertTitle>Sajnáljuk!</AlertTitle>
 						<AlertDescription fontSize='xl'>{error}</AlertDescription>
 					</Alert>
 				)}

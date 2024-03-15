@@ -67,11 +67,11 @@ const RegistrationScreen = () => {
 					<Stack spacing='8'>
 						<Stack spacing='6'>
 							<Stack spacing={{ base: '2', md: '3' }} textAlign='center'>
-								<Heading size={headingBR}>Create an account.</Heading>
+								<Heading size={headingBR}>Fiók létrehozása.</Heading>
 								<HStack spacing='1' justify='center'>
-									<Text color='muted'>Already a user?</Text>
+									<Text color='muted'>Már regisztrált?</Text>
 									<Button as={ReactLink} to='/login' variant='link' colorScheme='cyan'>
-										Sign in
+									Bejelentkezés
 									</Button>
 								</HStack>
 							</Stack>
@@ -90,7 +90,7 @@ const RegistrationScreen = () => {
 										justifyContent='center'
 										textAlign='center'>
 										<AlertIcon />
-										<AlertTitle>We are sorry!</AlertTitle>
+										<AlertTitle>Sajnáljuk!</AlertTitle>
 										<AlertDescription>{error}</AlertDescription>
 									</Alert>
 								)}
@@ -109,7 +109,7 @@ const RegistrationScreen = () => {
 								</Stack>
 								<Stack spacing='6'>
 									<Button colorScheme='cyan' size='lg' fontSize='md' isLoading={loading} type='submit'>
-										Sign up
+										Regisztráljon
 									</Button>
 								</Stack>
 							</Stack>

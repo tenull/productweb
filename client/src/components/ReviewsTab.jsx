@@ -86,7 +86,7 @@ const ReviewsTab = () => {
 														</Text>
 														<Spacer />
 														<Text mr='8px' fontWeight='bold'>
-															({product.reviews.length} Reviews)
+															({product.reviews.length} Vélemények)
 														</Text>
 													</Flex>
 												</Box>
@@ -97,11 +97,11 @@ const ReviewsTab = () => {
 												<Table size='sm'>
 													<Thead>
 														<Tr>
-															<Th>Username</Th>
-															<Th>Rating</Th>
-															<Th>Title</Th>
-															<Th>Comment</Th>
-															<Th>Created</Th>
+															<Th>Felhasználónév</Th>
+															<Th>Értékelés</Th>
+															<Th>Cím</Th>
+															<Th>Komment</Th>
+															<Th>Létrehozva</Th>
 														</Tr>
 													</Thead>
 													<Tbody>
@@ -119,7 +119,7 @@ const ReviewsTab = () => {
 																		variant='outline'
 																		colorScheme='red'
 																		onClick={() => onRemoveReview(product._id, review._id)}>
-																		Remove Review
+																		Vélemény törlése
 																	</Button>
 																</Td>
 															</Tr>

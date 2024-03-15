@@ -1,0 +1,116 @@
+import { GiCoffeeBeans } from "react-icons/gi";
+import { GiChipsBag } from "react-icons/gi";
+import { GiWrappedSweet } from "react-icons/gi";
+import { FaBottleDroplet } from "react-icons/fa6";
+import { GiTomato } from "react-icons/gi";
+import { TbBrandSugarizer } from "react-icons/tb";
+import { GiCannedFish } from "react-icons/gi";
+import { PiGrainsFill } from "react-icons/pi";
+import { FaBaby } from "react-icons/fa";
+import { GiWaterBottle } from "react-icons/gi";
+import { PiBeerBottleFill } from "react-icons/pi";
+import { GiCoolSpices } from "react-icons/gi";
+import { GiNoodles } from "react-icons/gi";
+import { PiDogFill } from "react-icons/pi";
+import { BsHouseGearFill } from "react-icons/bs";
+import { FaSprayCanSparkles } from "react-icons/fa6";
+// import {Image} from '../public/images2/sugar-icon.svg'
+// <?xml version="1.0" encoding="utf-8"?><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 122.88 76.02" style="enable-background:new 0 0 122.88 76.02" xml:space="preserve"><style type="text/css">.st0{fill-rule:evenodd;clip-rule:evenodd;}</style><g><path class="st0" d="M2.95,52.44l38.3,0.22c20.17,0.05,30.74-18.52,69.86-15.57c12.22,0.92,14.13,11.16,9.36,14.41 c-3.58,2.44-6.93-0.26-10.43-1.41c-2.91-0.96-6-1.55-9.27-1.81c-11.21-0.89-19.93,1.61-29.36,4.84 c-13.43,4.6-17.5,7.32-19.22,10.41C40.88,83.78,2.8,78.93,2.95,52.44L2.95,52.44z M29.87,25.75h14.01c1.19,0,2.27,0.49,3.06,1.27 l0.01,0.01c0.78,0.79,1.27,1.87,1.27,3.05v13.74c0,1.2-0.49,2.28-1.27,3.07c-0.78,0.78-1.87,1.27-3.07,1.27H29.87 c-1.19,0-2.27-0.49-3.06-1.27l-0.01-0.01c-0.78-0.79-1.27-1.87-1.27-3.06V30.09c0-1.19,0.49-2.27,1.27-3.06l0.01-0.01 C27.61,26.24,28.69,25.75,29.87,25.75L29.87,25.75z M43.43,30.55h-13.1v12.82h13.1V30.55L43.43,30.55z M4.34,25.75h14.01 c1.19,0,2.27,0.49,3.06,1.27l0.01,0.01c0.78,0.79,1.27,1.87,1.27,3.05v13.74c0,1.2-0.49,2.28-1.27,3.07 c-0.78,0.78-1.87,1.27-3.07,1.27H4.34c-1.19,0-2.27-0.49-3.06-1.27l-0.01-0.01C0.49,46.1,0,45.02,0,43.83V30.09 c0-1.19,0.49-2.27,1.27-3.06l0.01-0.01C2.08,26.24,3.16,25.75,4.34,25.75L4.34,25.75z M17.9,30.55H4.8v12.82h13.1V30.55L17.9,30.55 z M17.38,0H31.4c1.19,0,2.27,0.49,3.06,1.27l0.01,0.01c0.78,0.79,1.27,1.87,1.27,3.05v13.74c0,1.2-0.49,2.28-1.27,3.07 c-0.78,0.78-1.87,1.27-3.07,1.27H17.38c-1.19,0-2.27-0.49-3.06-1.27l-0.01-0.01c-0.78-0.79-1.27-1.87-1.27-3.06V4.34 c0-1.2,0.49-2.28,1.27-3.07C15.1,0.49,16.19,0,17.38,0L17.38,0z M30.94,4.8h-13.1v12.82h13.1V4.8L30.94,4.8z"/></g></svg>
+export const categoryData = [
+    {
+        "name": "Kávék,Teák forrócsokik",
+        "image": "/images2/kave.png",
+        "link":"/kavek",
+        "svg": <GiCoffeeBeans style={{width:'50px', height:'50px'}}/>
+    },
+    {
+        "name": "Cukrok, édesítők",
+        "image": "/images2/sugar.png",
+        "link":"/cukrok_edesito",
+        "svg": <TbBrandSugarizer style={{width:'50px', height:'50px'}}/>
+    },
+    {
+        "name": "Olajok, zsírok, ecetek",
+        "image": "/images2/oil.png",
+        "link":"/olajok_zsirok_ecetek",
+        "svg": <FaBottleDroplet style={{width:'50px', height:'50px'}}/>
+    },
+    {
+        "name": "Paradicsomos",
+        "image": "/images2/paradicsom.png",
+        "link":"/Paradicsomos",
+        "svg": <GiTomato style={{width:'50px', height:'50px'}}/>
+    },
+    {
+        "name": "Chipsek, rágcsálnivalók",
+        "image": "/images2/chips.webp",
+        "link":"/chips",
+        "svg": <GiChipsBag style={{width:'50px', height:'50px'}}/>
+    },
+    {
+        "name": "Édesség",
+        "image": "/images2/chips.webp",
+        "link":"/edesseg",
+        "svg": <GiWrappedSweet style={{width:'50px', height:'50px'}}/>
+    },
+    {
+        "name": "Üdítők",
+        "image": "/images2/chips.webp",
+        "link":"/uditok",
+        "svg": <GiWaterBottle style={{width:'50px', height:'50px'}}/>
+    },
+    {
+        "name": "Alkoholos Italok",
+        "image": "/images2/chips.webp",
+        "link":"/alkohol",
+        "svg": <PiBeerBottleFill style={{width:'50px', height:'50px'}}/>
+    },
+    {
+        "name": "Fűszerek, szószok, alapporok",
+        "image": "/images2/chips.webp",
+        "link":"/fuszer-szosz-alappor",
+        "svg": <GiCoolSpices style={{width:'50px', height:'50px'}}/>
+    },
+    {
+        "name": "Tészták",
+        "image": "/images2/chips.webp",
+        "link":"/tesztak",
+        "svg": <GiNoodles style={{width:'50px', height:'50px'}}/>
+    },
+    {
+        "name": "Kutya-Macska eledel",
+        "image": "/images2/chips.webp",
+        "link":"/kutya-macska-eledel",
+        "svg": <PiDogFill style={{width:'50px', height:'50px'}}/>
+    },
+    {
+        "name": "Háztartás",
+        "image": "/images2/chips.webp",
+        "link":"/haztartas",
+        "svg": <BsHouseGearFill style={{width:'50px', height:'50px'}}/>
+    },
+    {
+        "name": "Baba",
+        "image": "/images2/chips.webp",
+        "link":"/baba",
+        "svg": <FaBaby style={{width:'50px', height:'50px'}}/>
+    },
+    {
+        "name": "Szépségápolás",
+        "image": "/images2/chips.webp",
+        "link":"/szepsegapolas",
+        "svg": <FaSprayCanSparkles style={{width:'50px', height:'50px'}}/>
+    },
+    {
+        "name": "Konzervek,befőttek",
+        "image": "/images2/chips.webp",
+        "link":"/konzervek-befottek",
+        "svg": <GiCannedFish style={{width:'50px', height:'50px'}}/>
+    },
+    {
+        "name": "Magvak,műzlik",
+        "image": "/images2/chips.webp",
+        "link":"/magvak,muzlik",
+        "svg": <PiGrainsFill style={{width:'50px', height:'50px'}}/>
+    },
+]

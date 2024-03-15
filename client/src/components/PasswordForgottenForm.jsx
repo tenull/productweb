@@ -11,12 +11,12 @@ const PasswordForgottenForm = () => {
     }
     return (  <>
     <Box my='4'>
-        <Text as='b'>Enter your email address below.</Text>
-        <Text>We'll send you an email with a link to reset your password.</Text>
+        <Text as='b'>Írja be az alábbi e-mail címét.</Text>
+        <Text>Küldünk Önnek egy e-mailt a jelszó visszaállításához szükséges linkkel.</Text>
     </Box>
     <Stack>
         <Input mb='4' type='text' name='email' placeholder='Your Email Address' label='Email' value={email} onChange={(e)=>handleChange(e)}/>
-        <Button colorScheme='yellow' size='lg' fontSize='md' onClick={()=>dispatch(sendResetEmail(email))}>Send Reset Email</Button>
+        <Button colorScheme='yellow' size='lg' fontSize='md' onClick={()=>dispatch(sendResetEmail(email))}>Visszaállítási e-mail küldése</Button>
     </Stack>
     </> );
 }

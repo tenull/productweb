@@ -14,13 +14,13 @@ const SuccessScreen = () => {
 
 	return (
 		<Center height='100vh' flexDirection='column'>
-			<Text fontSize={{ base: 'md', md: 'xl', lg: '4xl' }}>Thank you for your order.</Text>
+			<Text fontSize={{ base: 'md', md: 'xl', lg: '4xl' }}>Köszönjük megrendelését.</Text>
 			<Box m='2'>
 				<BsBoxSeamFill size='50px' mt='2' />
 			</Box>
-			<Text>You can see your order in the order history.</Text>
+			<Text>Megrendelését a rendelési előzmények között láthatja.</Text>
 			<Button as={ReactLink} to='/order-history' mt='2'>
-				Check your order history
+			Ellenőrizze a rendelési előzményeket
 			</Button>
 		</Center>
 	);

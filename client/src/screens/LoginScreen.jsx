@@ -75,10 +75,10 @@ const LoginScreen = () => {
 		<Formik
 			initialValues={{ email: '', password: '' }}
 			validationSchema={Yup.object({
-				email: Yup.string().email('Invalid email.').required('An email address is required.'),
+				email: Yup.string().email('Érvénytelen email.').required('Email cím megadása szükséges.'),
 				password: Yup.string()
-					.min(1, 'Password is too short - must contain at least 1 character.')
-					.required('Password is required.'),
+					.min(1, 'A jelszó túl rövid - legalább 1 karaktert kell tartalmaznia.')
+					.required('Jelszó megadása szükséges.'),
 			})}
 			onSubmit={(values) => {
 				dispatch(login(values.email, values.password));
@@ -88,11 +88,11 @@ const LoginScreen = () => {
 					<Stack spacing='8'>
 						<Stack spacing='6'>
 							<Stack spacing={{ base: '2', md: '3' }} textAlign='center'>
-								<Heading fontSize={{ base: 'md', lg: 'xl' }}>Log in to your account</Heading>
+								<Heading fontSize={{ base: 'md', lg: 'xl' }}>Lépj be a fiókodba</Heading>
 								<HStack spacing='1' justify='center'>
-									<Text>Don't have an account?</Text>
+									<Text>Nincs fiókod?</Text>
 									<Button as={ReactLink} to='/registration' variant='link' colorScheme='cyan'>
-										Sign up
+										Regisztrálj
 									</Button>
 								</HStack>
 							</Stack>
@@ -111,7 +111,7 @@ const LoginScreen = () => {
 										justifyContent='center'
 										textAlign='center'>
 										<AlertIcon />
-										<AlertTitle>We are sorry!</AlertTitle>
+										<AlertTitle>Sajnáljuk!</AlertTitle>
 										<AlertDescription>{error}</AlertDescription>
 									</Alert>
 								)}
@@ -126,14 +126,14 @@ const LoginScreen = () => {
 											size='sm'
 											colorScheme='cyan'
 											variant='outline'>
-											Forgot Password ?
+											Elfelejtetted a jelszavad ?
 										</Button>
 										{showPasswordReset && <PasswordForgottenForm />}
 									</FormControl>
 								</Stack>
 								<Stack spacing='6'>
 									<Button colorScheme='cyan' size='lg' fontSize='md' isLoading={loading} type='submit'>
-										Sign in
+										Bejelentkezés
 									</Button>
 									<Button
 										leftIcon={<FcGoogle />}
@@ -142,7 +142,7 @@ const LoginScreen = () => {
 										fontSize='md'
 										isLoading={loading}
 										onClick={() => handleGoogleLogin()}>
-										Google sign in
+										Google bejelentkezés
 									</Button>
 								</Stack>
 							</Stack>

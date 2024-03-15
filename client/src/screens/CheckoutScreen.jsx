@@ -18,7 +18,7 @@ const CheckoutScreen = () => {
 			<Stack spacing='8' direction={{ base: 'column', lg: 'row' }} align={{ base: 'revert', lg: 'flex-start' }}>
 				<Stack spacing={{ base: '8', md: '10' }} flex='1.5' mb={{ base: '12', md: 'none' }}>
 					<Heading fontSize='2xl' fontWeight='extrabold'>
-						Shipping Information
+					Szállítási információk
 					</Heading>
 					<Stack>
 						<ShippingInformation />
