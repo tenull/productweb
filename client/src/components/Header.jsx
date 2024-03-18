@@ -72,7 +72,7 @@ const Header = () => {
   
 	const handleSearchChange = async (query) => {
 	  setSearchValue(query);
-	  setOpenAutoComplete(true); // Autocomplete box megnyitása az input változásakor
+	  setOpenAutoComplete(true); 
 	  try {
 		const { data } = await axios.get(`/api/autocomplete?t=${query}`);
 		setAutocompleteOptions(data);
@@ -105,7 +105,6 @@ const Header = () => {
 	};
   
 	useEffect(() => {
-	  // Az oldalon kívüli kattintások figyelése
 	  const handleClickOutside = (event) => {
 		if (event.target.closest('.autocomplete-box') === null) {
 		  setSearchValue(''); 
