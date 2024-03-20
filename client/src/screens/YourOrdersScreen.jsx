@@ -32,7 +32,7 @@ const YourOrdersScreen = () => {
 			dispatch(getUserOrders());
 		}
 	}, [dispatch, userInfo]);
-
+console.log(orders)
 	return userInfo ? (
 		<>
 			{loading ? (
@@ -49,7 +49,7 @@ const YourOrdersScreen = () => {
 				</Alert>
 			) : (
 				orders && (
-					<TableContainer minH='100vh'>
+					<TableContainer minH='100vh' >
 						<Table variant='striped'>
 							<Thead>
 								<Tr>
@@ -62,15 +62,15 @@ const YourOrdersScreen = () => {
 							</Thead>
 							<Tbody>
 								{orders.map((order) => (
-									<Tr key={order._id}>
+									<Tr key={order._id} >
 										<Td>{order._id}</Td>
 										<Td>{new Date(order.createdAt).toDateString()}</Td>
-										<Td>${order.totalPrice}</Td>
+										<Td>{order.totalPrice} Ft</Td>
 										<Td>
 											{order.orderItems.map((item) => (
 												<UnorderedList key={item._id}>
 													<ListItem>
-														{item.qty} x {item.name} (${item.price} each)
+														{item.qty} x {item.brand} {item.name} (darabja {item.price} Ft )
 													</ListItem>
 												</UnorderedList>
 											))}

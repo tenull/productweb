@@ -1,16 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 export const initialState = {
-	loading: false,
-	error: null,
-	products: [],
-	product: null,
-	pagination: {},
-	favoritesToggled: false,
-	reviewed: false,
-	favorites: JSON.parse(localStorage.getItem('favorites')) ?? [],
-	reviewRemoval:false,
-	productUpdate:false,
+    loading: false,
+    error: null,
+    products: [],
+    product: null,
+    pagination: {}, // Lapozási adatok
+    favoritesToggled: false,
+    reviewed: false,
+    favorites: JSON.parse(localStorage.getItem('favorites')) ?? [],
+    reviewRemoval:false,
+    productUpdate:false,
+    currentPage: 1, // Aktuális oldalszám
+    totalPages: 1, // Az összes oldal száma
 };
 
 export const productsSlice = createSlice({
@@ -40,6 +42,8 @@ export const productsSlice = createSlice({
 			state.loading = false;
 			state.error = null;
 			state.pagination = payload;
+			state.currentPage = payload.currentPage; // Aktuális oldalszám beállítása
+            state.totalPages = payload.totalPages; // Az összes oldal száma beállítása
 		},
 		setFavorites: (state, { payload }) => {
 			state.favorites = payload;
@@ -66,6 +70,12 @@ export const productsSlice = createSlice({
 			state.error = null;
 			state.reviewRemoval=true;
 			state.loading=false;
+		},
+		setCategory:(state,{payload})=>{
+			state.product = payload;
+			state.loading = true;
+			state.error = null;
+			state.reviewed = false;
 		}
 	},
 });
@@ -81,7 +91,8 @@ export const {
 	productReviewed,
 	setProductUpdateFlag,
 	resetError,
-	setReviewRemovalFlag
+	setReviewRemovalFlag,
+	setCategory
 } = productsSlice.actions;
 
 export default productsSlice.reducer;

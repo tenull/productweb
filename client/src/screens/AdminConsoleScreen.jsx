@@ -19,7 +19,7 @@ const AdminConsoleScreen = () => {
 					flex='1.5'
 					mb={{ base: '12', md: 'none' }}>
 					<Heading fontSize='2xl' fontWeight='extrabold'>
-						Admin Console
+						Admin felület
 					</Heading>
 					<Tabs size='md' variant='enclosed'>
 						<TabList>

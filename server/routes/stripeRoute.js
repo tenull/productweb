@@ -48,7 +48,7 @@ const stripePayment = async (req, res) => {
         shippingAddress: data.shippingAddress,
         shippingPrice: data.shipping,
         subtotal: subtotal,
-        totalPrice: Number(totalAmount + data.shipping).toFixed(2),
+        totalPrice: Number(totalAmount).toFixed(2),
     });
 
     const newOrder = await order.save(); // A rendelés mentése az adatbázisba
@@ -89,6 +89,21 @@ const stripePayment = async (req, res) => {
         })
     );
 };
+
+
+stripeRoute.route('/cancel').get(async (req, res) => {
+    try {
+        // Töröld a megrendelést a megadott orderId alapján
+        const order = await Order.findByIdAndDelete(req.body.orderId);
+        if (order) {
+            res.status(200).json({ message: 'Order canceled successfully' });
+        } else {
+            res.status(404).json({ message: 'Order not found' });
+        }
+    } catch (error) {
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
 
 stripeRoute.route('/').post(protectRoute, stripePayment);
 

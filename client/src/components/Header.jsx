@@ -53,71 +53,71 @@ const Header = () => {
 	const [autocompleteOptions, setAutocompleteOptions] = useState([]);
 	const [selectedProductId, setSelectedProductId] = useState(null);
 	const [openAutoComplete, setOpenAutoComplete] = useState(false);
-  
+
 	useEffect(() => {
-	  if (userInfo && !userInfo.active) {
-		setShowBanner(true)
-	  }
+		if (userInfo && !userInfo.active) {
+			setShowBanner(true)
+		}
 	}, [favoritesToggled, dispatch, userInfo]);
-  
+
 	const logoutHandler = () => {
-	  googleLogout()
-	  dispatch(logout());
-	  toast({
-		description: 'Kijelentkeztél.',
-		status: 'success',
-		isClosable: 'true',
-	  })
-	}
-  
-	const handleSearchChange = async (query) => {
-	  setSearchValue(query);
-	  setOpenAutoComplete(true); 
-	  try {
-		const { data } = await axios.get(`/api/autocomplete?t=${query}`);
-		setAutocompleteOptions(data);
-	  } catch (error) {
-		console.error('Error fetching autocomplete options:', error);
-	  }
-	};
-  
-	const handleSearchSubmit = async () => {
-	  try {
-		if (searchValue.trim() !== '') {
-		  await dispatch(searchProducts(searchValue));
-		  navigate(`/search/${searchValue}`);
-		}
-	  } catch (error) {
-		console.error('Error during search:', error);
+		googleLogout()
+		dispatch(logout());
 		toast({
-		  title: 'Hiba történt a keresés közben',
-		  status: 'error',
-		  isClosable: true,
-		});
-	  }
-	};
-  
-	const handleProductClick = (productId) => {
-	  setSelectedProductId(productId);
-	  navigate(`/product/${productId}`);
-	  setSearchValue(''); 
-	  setOpenAutoComplete(false); 
-	};
-  
-	useEffect(() => {
-	  const handleClickOutside = (event) => {
-		if (event.target.closest('.autocomplete-box') === null) {
-		  setSearchValue(''); 
-		  setOpenAutoComplete(false);
+			description: 'Kijelentkeztél.',
+			status: 'success',
+			isClosable: 'true',
+		})
+	}
+
+	const handleSearchChange = async (query) => {
+		setSearchValue(query);
+		setOpenAutoComplete(true);
+		try {
+			const { data } = await axios.get(`/api/autocomplete?t=${query}`);
+			setAutocompleteOptions(data);
+		} catch (error) {
+			console.error('Error fetching autocomplete options:', error);
 		}
-	  };
-  
-	  document.addEventListener('mousedown', handleClickOutside);
-	  return () => {
-		document.removeEventListener('mousedown', handleClickOutside);
-	  };
+	};
+
+	const handleSearchSubmit = async () => {
+		try {
+			if (searchValue.trim() !== '') {
+				await dispatch(searchProducts(searchValue));
+				navigate(`/search/${searchValue}`);
+			}
+		} catch (error) {
+			console.error('Error during search:', error);
+			toast({
+				title: 'Hiba történt a keresés közben',
+				status: 'error',
+				isClosable: true,
+			});
+		}
+	};
+
+	const handleProductClick = (productId) => {
+		setSelectedProductId(productId);
+		navigate(`/product/${productId}`);
+		setSearchValue('');
+		setOpenAutoComplete(false);
+	};
+
+	useEffect(() => {
+		const handleClickOutside = (event) => {
+			if (event.target.closest('.autocomplete-box') === null) {
+				setSearchValue('');
+				setOpenAutoComplete(false);
+			}
+		};
+
+		document.addEventListener('mousedown', handleClickOutside);
+		return () => {
+			document.removeEventListener('mousedown', handleClickOutside);
+		};
 	}, []);
-  
+
 	console.log(searchValue)
 	return (
 		<>
@@ -132,14 +132,14 @@ const Header = () => {
 			</Box>
 			<Box bg={mode(`red.300`, 'gray.900')} px='4' position='sticky' top='0' zIndex='sticky'>
 				<Flex h='16' alignItems='center' justifyContent='space-between'>
-					<Flex display={{ base: 'flex', md: 'none' }} alignItems='center'>
-						<IconButton
+					{/* <Flex display={{ base: 'flex', md: 'none' }} alignItems='center'>
+						{/* <IconButton
 							bg='parent'
 							size='md'
 							icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
 							onClick={isOpen ? onClose : onOpen}
-						/>
-						<IconButton
+						/> */}
+						{/* <IconButton
 							ml='12'
 							position='absolute'
 							icon={<TbShoppingCart size='20px' />}
@@ -151,8 +151,8 @@ const Header = () => {
 							<Text fontWeight='bold' fontStyle='italic' position='absolute' ml='74px' mt='-6' fontSize='sm'>
 								{cartItems.length}
 							</Text>
-						)}
-					</Flex>
+						)} */}
+					{/*</Flex> */}
 					<HStack spacing='8' alignItems='center'>
 						<Box alignItems='center' display='flex' as={ReactLink} to='/'>
 							<Icon as={FaBasketShopping} h='5' w='4' color={mode('white', 'yellow.200')} />
@@ -177,20 +177,22 @@ const Header = () => {
 							<ColorModeToggle />
 							{favoritesToggled ? (
 								<IconButton
-									onClick={() => dispatch(toggleFavorites(false))}
+								as={ReactLink} to='/favorites'
+									// onClick={() => dispatch(toggleFavorites(false))}
 									icon={<MdOutlineFavorite size='20px' />}
 									variant='ghost'
 								/>
 							) : (
 								<IconButton
-									onClick={() => dispatch(toggleFavorites(true))}
+								as={ReactLink} to='/favorites'
+									// onClick={() => dispatch(toggleFavorites(true))}
 									icon={<MdOutlineFavoriteBorder size='20px' />}
 									variant='ghost'
 								/>
 							)}
 						</HStack>
 					</HStack>
-					<Box w='30%' position="relative">
+					<Box w={{base:'50%',md:'40%'}} position="relative">
 						<InputGroup color='black'>
 							<Input
 								type="text"
@@ -217,23 +219,22 @@ const Header = () => {
 						</InputGroup>
 
 						{openAutoComplete && searchValue && autocompleteOptions.length > 0 && (
-        <Box className="autocomplete-box" bg="white" boxShadow="lg" p={2} position="absolute" top="calc(100% + 8px)" left="0" width="100%">
-          {autocompleteOptions.map((option, index) => (
-            <Box key={index} p={2} _hover={{ bg: "gray.200" }} onClick={() => handleProductClick(option._id)}>
-              <Flex>
-                {option.brand} {option.name}
-                <Image
-                  w='35px'
-                  mb='30px'
-                  src={option.images[0]}
-                  alt={option.name}
-                  fallbackSrc='https://via.placeholder.com/250'
-                />
-              </Flex>
-            </Box>
-          ))}
-        </Box>
-      )}
+							<Box className="autocomplete-box"  bg="white" boxShadow="lg" p={2} position="absolute" top="calc(100% + 8px)" left="0" width="100%">
+								{autocompleteOptions.map((option, index) => (
+									<Box display='flex' alignItems='center' mb={{base:0,md:'10px'}} key={index} p={2} _hover={{ bg: "gray.200" }} onClick={() => handleProductClick(option._id)}>
+										<Flex color='black' fontSize={{base:'10px',md:'16px'}}>
+											{option.brand}  {option.name}
+											<Image
+												w='35px'
+												src={option.images[0]}
+												alt={option.name}
+												fallbackSrc='https://via.placeholder.com/250'
+											/>
+										</Flex>
+									</Box>
+								))}
+							</Box>
+						)}
 
 					</Box>
 
@@ -280,7 +281,7 @@ const Header = () => {
 						)}
 					</Flex>
 				</Flex>
-				<Box display='flex'>
+				{/* <Box display='flex'>
 					{isOpen && (
 						<Box pb='4' display={{ md: 'none' }}>
 							<Stack as='nav' spacing='4'>
@@ -306,7 +307,35 @@ const Header = () => {
 							<ColorModeToggle />
 						</Box>
 					)}
-				</Box>
+				</Box> */}
+			</Box>
+
+			<Box bg={mode(`red.300`, 'gray.900')} display={{md:'none'}} px='4' position='fixed' bottom='0' zIndex='sticky' width='100%'>
+				<Flex h='16' alignItems='center' justifyContent='center'>
+					<HStack spacing='8' alignItems='center'>
+						<HStack as='nav' spacing='4' display='flex' justifyContent=''>
+							{Links.map((link) => (
+								<NavLink route={link.route} key={link.route}>
+									<Text fontWeight='medium'>{link.name}</Text>
+								</NavLink>
+							))}
+							<Box>
+								<IconButton icon={<TbShoppingCart size='20px' />} as={ReactLink} to='/cart' variant='ghost' />
+								{cartItems.length > 0 && (
+									<Text fontWeight='bold' fontStyle='italic' position='absolute' ml='26px' mt='-6' fontSize='sm'>
+										{cartItems.length}
+									</Text>
+								)}
+							</Box>
+							<IconButton
+								as={ReactLink} to='/favorites'
+									// onClick={() => dispatch(toggleFavorites(false))}
+									icon={<MdOutlineFavorite size='20px' />}
+									variant='ghost'
+								/>
+						</HStack>
+					</HStack>
+				</Flex>
 			</Box>
 			{userInfo && !userInfo.active && showBanner && (
 				<Box>

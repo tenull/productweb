@@ -68,7 +68,7 @@ const PasswordResetScreen = () => {
 				confirmPassword: Yup.string()
 					.min(1, 'A jelszó túl rövid - legalább 1 karaktert kell tartalmaznia.')
 					.required('Jelszó megadása szükséges.')
-					.oneOf([Yup.ref('password'), null], 'Passwords must match'),
+					.oneOf([Yup.ref('password'), null], 'Jelszavaknak egyezniük kell.'),
 			})}
 			onSubmit={(values) => {
 				dispatch(resetPassword(values.password, token));
@@ -101,12 +101,12 @@ const PasswordResetScreen = () => {
 								)}
 								<Stack spacing='5'>
 									<FormControl>
-										<PasswordField type='password' name='password' placeholder='Your password' label='New Password' />
+										<PasswordField type='password' name='password' placeholder='Jelszó' label='Új jelszó' />
 										<PasswordField
 											type='password'
 											name='confirmPassword'
-											placeholder='Confirm your new password'
-											label='Confirm your password'
+											placeholder='Ismételd meg a jelszót'
+											label='ismételd meg a jelszót'
 										/>
 									</FormControl>
 								</Stack>

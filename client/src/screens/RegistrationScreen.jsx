@@ -49,15 +49,15 @@ const RegistrationScreen = () => {
 		<Formik
 			initialValues={{ email: '', password: '', name: '' }}
 			validationSchema={Yup.object({
-				name: Yup.string().required('A name is required.'),
-				email: Yup.string().email('Invalid email').required('This email address is required.'),
+				name: Yup.string().required('Név megadása szükséges.'),
+				email: Yup.string().email('Érvénytelen e-mail').required('Az e-mail cím szükséges.'),
 				password: Yup.string()
-					.min(1, 'Password is too short - must contain at least 1 character.')
-					.required('Password is required.'),
+					.min(5, 'A jelszó túl rövid - legalább 5 karaktert kell tartalmaznia.')
+					.required('Jelszó szükséges.'),
 				confirmPassword: Yup.string()
-					.min(1, 'Password is too short - must contain at least 1 character.')
-					.required('Password is required.')
-					.oneOf([Yup.ref('password'), null], 'Passwords must match'),
+					.min(5, 'A jelszó túl rövid - legalább 5 karaktert kell tartalmaznia.')
+					.required('Jelszó szükséges.')
+					.oneOf([Yup.ref('password'), null], 'A jelszavaknak egyezniük kell'),
 			})}
 			onSubmit={(values) => {
 				dispatch(register(values.name, values.email, values.password));
@@ -96,14 +96,14 @@ const RegistrationScreen = () => {
 								)}
 								<Stack spacing='5'>
 									<FormControl>
-										<TextField type='text' name='name' placeholder='Your first and last name.' label='Full name' />
+										<TextField type='text' name='name' placeholder='Vezeték és keresztnév' label='Teljes név' />
 										<TextField type='text' name='email' placeholder='you@example.com' label='Email' />
-										<PasswordField type='password' name='password' placeholder='Your password' label='Password' />
+										<PasswordField type='password' name='password' placeholder='Jelszavad' label='Jelszó' />
 										<PasswordField
 											type='password'
 											name='confirmPassword'
-											placeholder='Confirm your new password'
-											label='Confirm your password'
+											placeholder='Jelszó újra'
+											label='Jelszó újra'
 										/>
 									</FormControl>
 								</Stack>

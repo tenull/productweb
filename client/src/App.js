@@ -25,6 +25,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import HotDeals from './screens/HotDeals';
 import Contact from './screens/Contact';
 import SearchScreen from './screens/SearchScreen';
+import Favorites from './screens/Favorites';
 
 function App() {
   const dispatch = useDispatch();
@@ -32,7 +33,7 @@ function App() {
   const { loading, error, products } = useSelector((state) => state.product);
 
   useEffect(() => {
-    dispatch(getProducts()); 
+    dispatch(getProducts());
   }, [dispatch]);
 
   useEffect(() => {
@@ -67,7 +68,7 @@ function App() {
             <main>
               <Routes>
                 <Route path='/products' element={<ProductsScreen />} />
-				<Route path='/hot-deals' element={<HotDeals products={products}/>} />
+                <Route path='/hot-deals' element={<HotDeals products={products} />} />
                 <Route path='/' element={<LandingScreen />} />
                 <Route path='/product/:id' element={<ProductScreen />} />
                 <Route path='/cart' element={<CartScreen />} />
@@ -80,9 +81,10 @@ function App() {
                 <Route path='/order-history' element={<YourOrdersScreen />} />
                 <Route path='/success' element={<SuccessScreen />} />
                 <Route path='/admin-console' element={<AdminConsoleScreen />} />
-                <Route path='/:category' element={<CategoryScreen products={products} />} />
-				<Route path='/contact' element={<Contact/>} />
-				<Route path='/search/:id' element={<SearchScreen/>} />
+                <Route path='/:category' element={<CategoryScreen products={products} loading={loading} />} />
+                <Route path='/contact' element={<Contact />} />
+                <Route path='/search/:id' element={<SearchScreen />} />
+                <Route path='/favorites' element={<Favorites />} />
               </Routes>
             </main>
             <Footer />

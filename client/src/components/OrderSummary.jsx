@@ -45,7 +45,7 @@ const OrderSummary = ({ checkoutSreen = false }) => {
 					<Text fontWeight='medium' color={mode('gray.600', 'gray.400')}>
 						Fizetés
 					</Text>
-					<Text fontWeight='medium'> {shipping && parseFloat(shipping) === 4.99 ? 'Fizetés a helszínen': 'Fizetés bankkártyával'}</Text>
+					<Text fontWeight='medium'> {shipping && parseFloat(shipping) === 4.99 ? 'Fizetés a helyszínen': 'Fizetés bankkártyával'}</Text>
 
 
 				</Flex>

@@ -10,7 +10,7 @@ export const initialState = {
 	loading: false,
 	error: null,
 	cartItems: JSON.parse(localStorage.getItem('cartItems')) ?? [],
-	shipping: JSON.parse(localStorage.getItem('shipping')) ?? Number(4.99),
+	shipping: JSON.parse(localStorage.getItem('shipping')) ?? Number(0),
 	subtotal: localStorage.getItem('cartItems') ? calculateSubtotal(JSON.parse(localStorage.getItem('cartItems'))) : 0,
 };
 

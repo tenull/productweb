@@ -19,97 +19,97 @@ import { FaSprayCanSparkles } from "react-icons/fa6";
 export const categoryData = [
     {
         "name": "Kávék,Teák forrócsokik",
-        "image": "/images2/kave.png",
+        "image": "/images/coffee_tee.png",
         "link":"/kavek",
         "svg": <GiCoffeeBeans style={{width:'50px', height:'50px'}}/>
     },
     {
         "name": "Cukrok, édesítők",
-        "image": "/images2/sugar.png",
+        "image": "/images/sugar.png",
         "link":"/cukrok_edesito",
         "svg": <TbBrandSugarizer style={{width:'50px', height:'50px'}}/>
     },
     {
         "name": "Olajok, zsírok, ecetek",
-        "image": "/images2/oil.png",
+        "image": "/images/oil.png",
         "link":"/olajok_zsirok_ecetek",
         "svg": <FaBottleDroplet style={{width:'50px', height:'50px'}}/>
     },
     {
         "name": "Paradicsomos",
-        "image": "/images2/paradicsom.png",
+        "image": "/images/tomato.png",
         "link":"/Paradicsomos",
         "svg": <GiTomato style={{width:'50px', height:'50px'}}/>
     },
     {
         "name": "Chipsek, rágcsálnivalók",
-        "image": "/images2/chips.webp",
+        "image": "/images/chips.png",
         "link":"/chips",
         "svg": <GiChipsBag style={{width:'50px', height:'50px'}}/>
     },
     {
         "name": "Édesség",
-        "image": "/images2/chips.webp",
+        "image": "/images/sweets.png",
         "link":"/edesseg",
         "svg": <GiWrappedSweet style={{width:'50px', height:'50px'}}/>
     },
     {
         "name": "Üdítők",
-        "image": "/images2/chips.webp",
+        "image": "/images/sodas.png",
         "link":"/uditok",
         "svg": <GiWaterBottle style={{width:'50px', height:'50px'}}/>
     },
     {
         "name": "Alkoholos Italok",
-        "image": "/images2/chips.webp",
+        "image": "/images/beer.png",
         "link":"/alkohol",
         "svg": <PiBeerBottleFill style={{width:'50px', height:'50px'}}/>
     },
     {
         "name": "Fűszerek, szószok, alapporok",
-        "image": "/images2/chips.webp",
+        "image": "/images/spices.png",
         "link":"/fuszer-szosz-alappor",
         "svg": <GiCoolSpices style={{width:'50px', height:'50px'}}/>
     },
     {
         "name": "Tészták",
-        "image": "/images2/chips.webp",
+        "image": "/images/pasta2.png",
         "link":"/tesztak",
         "svg": <GiNoodles style={{width:'50px', height:'50px'}}/>
     },
     {
         "name": "Kutya-Macska eledel",
-        "image": "/images2/chips.webp",
+        "image": "/images/catdog.png",
         "link":"/kutya-macska-eledel",
         "svg": <PiDogFill style={{width:'50px', height:'50px'}}/>
     },
     {
         "name": "Háztartás",
-        "image": "/images2/chips.webp",
+        "image": "/images/clean.png",
         "link":"/haztartas",
         "svg": <BsHouseGearFill style={{width:'50px', height:'50px'}}/>
     },
     {
         "name": "Baba",
-        "image": "/images2/chips.webp",
+        "image": "/images/diaper.png",
         "link":"/baba",
         "svg": <FaBaby style={{width:'50px', height:'50px'}}/>
     },
     {
         "name": "Szépségápolás",
-        "image": "/images2/chips.webp",
+        "image": "/images/bodycare.png",
         "link":"/szepsegapolas",
         "svg": <FaSprayCanSparkles style={{width:'50px', height:'50px'}}/>
     },
     {
         "name": "Konzervek,befőttek",
-        "image": "/images2/chips.webp",
+        "image": "/images/jar.png",
         "link":"/konzervek-befottek",
         "svg": <GiCannedFish style={{width:'50px', height:'50px'}}/>
     },
     {
         "name": "Magvak,műzlik",
-        "image": "/images2/chips.webp",
+        "image": "/images/seeds.png",
         "link":"/magvak,muzlik",
         "svg": <PiGrainsFill style={{width:'50px', height:'50px'}}/>
     },

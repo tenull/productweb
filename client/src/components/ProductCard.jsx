@@ -41,8 +41,10 @@ const ProductCard = ({ product, loading }) => {
 	return (
 		<Skeleton isLoaded={!loading}>
 			<Box
+			
 				_hover={{ transform: 'scale(1.04)', transitionDuration: '0.5s' }}
 				borderWidth='1px'
+				maxW='400px'
 				overflow='hidden'
 				p='4'
 				shadow='md'>
@@ -51,6 +53,7 @@ const ProductCard = ({ product, loading }) => {
 						AKCIÓ!
 					</Badge>
 				)}
+				<Box as={ReactLink} to={`/product/${product._id}`}>
 				<Image
 					onMouseEnter={() => setIsShown(true)}
 					onMouseLeave={() => setIsShown(false)}
@@ -70,12 +73,13 @@ const ProductCard = ({ product, loading }) => {
 				<Text noOfLines={1} fontSize='xl' display='flex' justifyContent='center' fontWeight='semibold' mt='2'>
 					{product.brand}  
 				</Text>
-				<Text style={{textAlign:'center'}} noOfLines={1} fontSize='md' display='flex' justifyContent='center' fontWeight='' mt='2'>
+				<Text style={{textAlign:'center',textOverflow: 'ellipsis'}} noOfLines={1} fontSize='md' display='flex' justifyContent='center' fontWeight='' mt='2'>
 					{product.name}
 				</Text>
 				<Text noOfLines={1} fontSize='md' color='gray.600'>
 					{product.subtitle}
 				</Text>
+				</Box>
 				<Flex justify='center' alignItems='center' mt='2'>
 					{/* <Badge colorScheme='cyan'>{product.category}</Badge> */}
 					<Text fontSize='xl' fontWeight='semibold' color='red.300'>

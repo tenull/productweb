@@ -14,7 +14,7 @@ import axios from 'axios';
 export const getProducts = (page,perPage,favouriteToggle) => async (dispatch) => {
 	dispatch(setLoading());
 	try {
-		const { data } = await axios.get(`/api/products/${page}/${25}`);
+		const { data } = await axios.get(`/api/products/${page}/${10}`);
 		const { products, pagination } = data;
 		dispatch(setProducts(products));
 		dispatch(setPagination(pagination));
@@ -85,13 +85,14 @@ export const getProduct = (id) => async (dispatch) => {
 	}
 };
 
-export const getCategory = (category) => async (dispatch) => {
+export const getCategory = (page) => async (dispatch) => {
     
     try {
-		const { data } = await axios.get(`/api/products?category=${category}&page=1&perPage=25`);
+		const { data } = await axios.get(`/api/products/${page}/${100}`);
 
         dispatch(setProducts(data));
-        dispatch(setPagination({ currentPage: 1, totalPages: 1 }));
+        dispatch(setPagination(page));
+		dispatch(setLoading(page))
     } catch (error) {
         dispatch(
             setError(

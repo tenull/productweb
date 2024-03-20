@@ -50,7 +50,7 @@ const Footer = () => {
             <Divider />
             <Stack pt='8' pb='12' justify='space-between' direction={{ base: 'column-reverse', md: 'row' }} align='center'>
                 <Text fontSize='sm' color='subtle'>
-                    &copy; {new Date().getFullYear()}Tech Lines, Inc. All rights reserved.
+                    &copy; {new Date().getFullYear()} Évi ABC. Minden jog fenntartva.
                 </Text>
                 <ButtonGroup variant='ghost'>
                     <IconButton as='a' href='#' icon={<FaLinkedin fontSize='1.25rem' />} />

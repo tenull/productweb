@@ -40,7 +40,7 @@ const OrdersTab = () => {
 		dispatch(resetErrorAndRemoval());
 		if (orderRemoval) {
 			toast({
-				description: 'Order has been removed.',
+				description: 'Rendelés törölve lett.',
 				status: 'success',
 				isClosable: true,
 			});
@@ -48,7 +48,7 @@ const OrdersTab = () => {
 
 		if (deliveredFlag) {
 			toast({
-				description: 'Order has been set to delivered.',
+				description: 'Rendelés kiszállítva.',
 				status: 'success',
 				isClosable: true,
 			});
@@ -84,7 +84,7 @@ const OrdersTab = () => {
 				</Wrap>
 			) : (
 				<Box>
-					<TableContainer>
+					<TableContainer >
 						<Table variant='simple'>
 							<Thead>
 								<Tr>
@@ -105,7 +105,7 @@ const OrdersTab = () => {
 											<Td>{new Date(order.createdAt).toLocaleString()}</Td>
 											<Td>{order.username}</Td>
 											<Td>{order.email}</Td>
-											<Td>
+											<Td maxW='200px' overflowX='auto'>
 												<Text>
 													<i>Cím: </i> {order.shippingAddress.address}
 												</Text>
@@ -119,15 +119,16 @@ const OrdersTab = () => {
 													<i>Megjegyzés: </i> {order.shippingAddress.comment}
 												</Text>
 											</Td>
-											<Td>
+											<Td maxW='200px' overflowX='auto'>
 												{order.orderItems.map((item) => (
 													<Text key={item._id}>
-														{item.qty} x {item.name}
+														{item.qty} x {item.brand} {item.name}
+														{console.log(item)}
 													</Text>
 												))}
 											</Td>
 											<Td>{order && parseFloat(order.shippingPrice) === 4.99 ? 'Fizetés a helyszínen': 'Fizetés bankkártyával'}</Td>
-											<Td>{order.totalPrice - order.shippingPrice} Ft</Td>
+											<Td>{order.totalPrice} Ft</Td>
 											<Td>{order.isDelivered ? <CheckCircleIcon /> : 'Pending'}</Td>
 											<Td>
 												<Flex direction='column'>

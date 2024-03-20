@@ -44,7 +44,7 @@ const LoginScreen = () => {
 				navigate(redirect);
 			}
 			toast({
-				description: 'Login successful.',
+				description: 'Sikeres bejelentkezés.',
 				status: 'success',
 				isClosable: true,
 			});
@@ -118,7 +118,7 @@ const LoginScreen = () => {
 								<Stack spacing='5'>
 									<FormControl>
 										<TextField type='text' name='email' placeholder='you@example.com' label='Email' />
-										<PasswordField type='password' name='password' placeholder='your password' label='Password' />
+										<PasswordField type='password' name='password' placeholder='jelszavad' label='Jelszó' />
 
 										<Button
 											my='2'

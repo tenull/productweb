@@ -1,4 +1,4 @@
-import { Alert, AlertTitle, AlertIcon, AlertDescription, Box, Button, Center, Wrap, WrapItem } from '@chakra-ui/react';
+import { Alert,Text, AlertTitle, AlertIcon, AlertDescription, Box, Button, Center, Wrap, WrapItem } from '@chakra-ui/react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ProductCard from '../components/ProductCard';
@@ -30,6 +30,10 @@ const ProductsScreen = () => {
 			<Category />
 			{products.length >= 1 && (
 				<Box>
+					  <Box display='flex' justifyContent='center' marginY='20px'>
+                <Text fontSize='4xl' fontWeight='bold'>Termékeink</Text>
+                
+                </Box>
 					<Wrap spacing='30px' justify='center' minHeight='80vh' mx={{ base: '12', md: '20', lg: '32' }}>
 						{error ? (
 							<Alert status='error'>

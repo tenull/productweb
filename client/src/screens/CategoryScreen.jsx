@@ -3,21 +3,37 @@ import { useParams } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
 import { WrapItem, Center, Box, Wrap, Button } from '@chakra-ui/react';
 import { useDispatch, useSelector } from 'react-redux';
-import { ArrowLeftIcon, ArrowRightIcon } from '@chakra-ui/icons'; 
-import { getProducts,getCategory } from '../redux/actions/productActions';
+import { ArrowLeftIcon, ArrowRightIcon } from '@chakra-ui/icons';
+import { getProducts, getCategory } from '../redux/actions/productActions';
+import { Text } from '@chakra-ui/react';
+import Category from '../components/Category';
+import { categoryData } from '../categoryData';
+import { useEffect } from 'react';
 
 const CategoryScreen = ({ products }) => {
-    const { category } = useParams();
-    const { favoritesToggled, pagination } = useSelector(state => state.product); 
+    const { category,name } = useParams();
+    const { favoritesToggled, pagination } = useSelector(state => state.product);
     const dispatch = useDispatch();
     const filteredProducts = products.filter(product => product.category === category);
-	const paginationButtonClick = (page) => {
-		dispatch(getProducts(page));
-	};
+    const categoryObject = categoryData.find(item => item.link === `/${category}`);
+    const paginationButtonClick = (page) => {
+        dispatch(getProducts(page));
+    };
+
+    useEffect(() => {
+        dispatch(getProducts()); 
+    }, [dispatch]);
+
 
     return (
         <Box>
-            <h1>{category} kategória termékei:</h1>
+            <Category />
+            <Box style={{textAlign:'center'}} display='flex' justifyContent='center' marginY='20px'>
+            <Text fontSize='4xl' fontWeight='bold'><Text>{categoryObject && categoryObject.name}</Text></Text>
+
+
+
+            </Box>
             <Wrap spacing='30px' justify='center' minHeight='80vh' mx={{ base: '12', md: '20', lg: '32' }}>
                 {filteredProducts.map(product => (
                     <WrapItem key={product._id}>
