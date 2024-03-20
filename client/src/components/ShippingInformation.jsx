@@ -77,8 +77,8 @@ const ShippingInformation = () => {
 									<Stack pr='10' spacing={{ base: '8', md: '10' }} flex='1.5'>
 										<Box>
 											<Radio value='express'>
-												<Text fontWeight='bold'>Fizetés bankkártyával</Text>
-												<Text>azonnali fizetés</Text>
+												<Text fontWeight='bold'>Fizetés a helyszínen</Text>
+												<Text>Bankkártyával</Text>
 											</Radio>
 										</Box>
 										<Stack spacing='6'>Express</Stack>
@@ -86,7 +86,7 @@ const ShippingInformation = () => {
 									<Radio value='withoutExpress'>
 										<Box>
 											<Text fontWeight='bold'>Fizetés a helyszínen</Text>
-											<Text>Bankkártyával vagy Készpénzzel</Text>
+											<Text>Készpénzzel</Text>
 										</Box>
 									</Radio>
 								</Stack>

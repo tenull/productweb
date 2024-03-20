@@ -123,7 +123,7 @@ const ProductScreen = () => {
 								</Heading>
 								<Stack spacing='5'>
 									<Box>
-										<Text fontSize='xl'>Ft {product.price}</Text>
+										<Text fontSize='xl'>{product.price} Ft</Text>
 										<Flex>
 											<HStack spacing='2px'>
 												<Star color='red.500' />
@@ -188,12 +188,12 @@ const ProductScreen = () => {
 									alt={product.name}
 									fallbackSrc='https://via.placeholder.com/250'
 								/>
-								<Image
+								{/* <Image
 									mb='30px'
 									src={product.images[1]}
 									alt={product.name}
 									fallbackSrc='https://via.placeholder.com/250'
-								/>
+								/> */}
 							</Flex>
 						</Stack>
 

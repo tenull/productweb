@@ -9,30 +9,30 @@ const Footer = () => {
     return (
         <Box w='100%' bg={mode('red.300', 'gray.900')}>
             <Container as='footer' maxW='7xl'>
-                <Stack spacing='12' direction={{ base: 'column', md: 'row' }} justify='space-evenly' py={{ base: '12', md: '16' }}>
+                <Stack spacing='12' direction={{ base: 'column', md: 'row' }} align={{base:'center',md:'center'}} justify={{base:'space-evenly',md:'space-evenly'}} py={{ base: '12', md: '16' }}>
                     <Stack spacing={{ base: '6', md: '8' }} align='start'>
                         <Flex alignItems='center'>
                             <Icon as={TbShoppingCart} h='10' color={mode('black', 'yellow.200')} />
-                            <Text fontSize='2xl' fontWeight='extrabold'>ÉVI ABC</Text>
+                            <Text fontSize='2xl' fontWeight='extrabold'>Évi ABC</Text>
                         </Flex>
-                        <Text color='muted'>+36 70 207 4102</Text>
+                        <Text fontWeight='bold' color='muted'>+36 70 207 4102</Text>
                     </Stack>
-                    <Stack direction={{ base: 'column-reverse', md: 'column', lg: 'row' }} spacing={{ base: '12', md: '8' }}>
+                    <Stack direction={{ base: 'column-reverse', md: 'column', lg: 'row' }} align={{base:'center',md:'center'}} spacing={{ base: '12', md: '8' }}>
                         <Stack spacing='12' flex='1'>
-                            <Text fontSize='sm' fontWeight='semibold' color='subtle'>Elérhetőségek</Text>
+                            <Text fontSize='sm' fontWeight='bold' textAlign='center' color='subtle'>Elérhetőségek</Text>
                             <Stack spacing='3' shouldWrapChildren direction='column'>
-                                <Button variant='link'>Cím: 4080 Hajdúnánás, Sarló utca 45.</Button>
-                                <Button variant='link'>Telefon: +36 70 207 4102</Button>
-                                <Button variant='link'>Email: t0csa91@gmail.com</Button>
+                                <Text variant='link'>Cím: 4080 Hajdúnánás, Sarló utca 45.</Text>
+                                <Text variant='link'>Telefon: +36 70 207 4102</Text>
+                                <Text variant='link'>Email: t0csa91@gmail.com</Text>
                             </Stack>
                         </Stack>
                         <Stack spacing='12' flex='1'>
-                            <Text fontSize='sm' fontWeight='semibold' color='subtle'>Információk</Text>
-                            <Stack spacing='3' shouldWrapChildren direction='column'>
-                                <Button variant='link'>Általános szerződési feltételek</Button>
-                                <Button variant='link'>Szállítási és fizetési információk</Button>
-                                <Button variant='link'>Adatkezelési tájékoztató</Button>
-                                <Button variant='link'>Adatkezelési tájékoztató</Button>
+                            <Text fontSize='sm' fontWeight='bold' textAlign='center' color='subtle'>Információk</Text>
+                            <Stack spacing='6' shouldWrapChildren direction='column'>
+                                <Button fontWeight='400' color={mode('black','white')} variant='link'>Általános szerződési feltételek</Button>
+                                <Button fontWeight='400' color={mode('black','white')} variant='link'>Szállítási és fizetési információk</Button>
+                                <Button fontWeight='400' color={mode('black','white')} variant='link'>Adatkezelési tájékoztató</Button>
+                              
                             </Stack>
                         </Stack>
                     </Stack>

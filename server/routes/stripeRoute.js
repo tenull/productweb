@@ -23,6 +23,7 @@ const calculateDiscount = (amount) => {
 
 
 
+
 const stripePayment = async (req, res) => {
     const data = req.body;
 
@@ -39,7 +40,8 @@ const stripePayment = async (req, res) => {
 
     const discount = calculateDiscount(subtotal);
     const totalAmount = subtotal - discount;
-
+    const totalPrice = Math.floor(totalAmount / 5) * 5;
+    console.log(totalPrice)
     const order = new Order({
         orderItems: data.cartItems,
         user: data.userInfo._id,
@@ -48,7 +50,7 @@ const stripePayment = async (req, res) => {
         shippingAddress: data.shippingAddress,
         shippingPrice: data.shipping,
         subtotal: subtotal,
-        totalPrice: Number(totalAmount).toFixed(2),
+        totalPrice: totalPrice.toFixed(2),
     });
 
     const newOrder = await order.save(); // A rendelés mentése az adatbázisba
@@ -62,48 +64,35 @@ const stripePayment = async (req, res) => {
     });
 
     // Fizetési opció alapján döntjük el a success_url értékét
-    const successUrl = data.paymentOption === 'withoutExpress' ? 'http://localhost:3000/success' : 'http://localhost:3000/';
+    const successUrl = 'http://localhost:3000/success'; // Módosítás: Átirányítás az /success oldalra
 
-    const session = await stripe.checkout.sessions.create({
-        payment_method_types: ['card'],
-        billing_address_collection: 'required',
-        line_items: [{
-            price_data: {
-                currency: 'huf',
-                unit_amount: totalAmount * 100, // A fizetendő összeg centekben
-                product_data: {
-                    name: 'Fizetés',
-                },
-            },
-            quantity: 1,
-        }],
-        mode: 'payment',
-        success_url: successUrl, // A fizetés sikeressége esetén a megfelelő URL-re irányítunk át
-        cancel_url: 'http://localhost:3000/cancel',
-    });
+    // Stripe fizetési munkamenet létrehozása kikommentelve
+
+    // const session = await stripe.checkout.sessions.create({
+    //     payment_method_types: ['card'],
+    //     billing_address_collection: 'required',
+    //     line_items: [{
+    //         price_data: {
+    //             currency: 'huf',
+    //             unit_amount: totalAmount * 100, // A fizetendő összeg centekben
+    //             product_data: {
+    //                 name: 'Fizetés',
+    //             },
+    //         },
+    //         quantity: 1,
+    //     }],
+    //     mode: 'payment',
+    //     success_url: successUrl, 
+    //     cancel_url: 'http://localhost:3000/cancel',
+    // });
 
     res.send(
         JSON.stringify({
             orderId: orderId,
-            url: session.url,
+             url: successUrl, // Módosítás: Nem küldjük vissza a Stripe fizetési URL-t
         })
     );
 };
-
-
-stripeRoute.route('/cancel').get(async (req, res) => {
-    try {
-        // Töröld a megrendelést a megadott orderId alapján
-        const order = await Order.findByIdAndDelete(req.body.orderId);
-        if (order) {
-            res.status(200).json({ message: 'Order canceled successfully' });
-        } else {
-            res.status(404).json({ message: 'Order not found' });
-        }
-    } catch (error) {
-        res.status(500).json({ message: 'Internal server error' });
-    }
-});
 
 stripeRoute.route('/').post(protectRoute, stripePayment);
 

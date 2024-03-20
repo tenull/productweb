@@ -67,7 +67,7 @@ const CartScreen = () => {
 
 							<HStack mt='6' fontWeight='semibold'>
 								<p>vagy </p>
-								<Link as={ReactLink} to='/products' color={mode('cyan.500', 'cyan.200')}>
+								<Link as={ReactLink} to='/products' color={mode('red.300', 'red.200')}>
 									Folytassa a vásárlást
 								</Link>
 							</HStack>
