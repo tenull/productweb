@@ -3,17 +3,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { searchProducts } from '../redux/actions/searchActions';
 import { WrapItem, Center, Box, Wrap } from '@chakra-ui/react';
 import ProductCard from '../components/ProductCard';
+
 const SearchScreen = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [autoComplete,setAutoComplete]=useState([])
     const dispatch = useDispatch();
-    const { loading, error, searchResults } = useSelector((state) => state.search); // Állapotok lekérése a Redux store-ból
+    const { loading, error, searchResults } = useSelector((state) => state.search); 
 
 
 
 
     const handleSearch = () => {
-        dispatch(searchProducts(searchTerm)); // Redux akció meghívása a keresés indításához
+        dispatch(searchProducts(searchTerm));
     };
     console.log(searchTerm)
     return (

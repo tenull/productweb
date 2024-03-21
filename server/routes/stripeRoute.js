@@ -89,7 +89,7 @@ const stripePayment = async (req, res) => {
     res.send(
         JSON.stringify({
             orderId: orderId,
-             url: successUrl, // Módosítás: Nem küldjük vissza a Stripe fizetési URL-t
+             url: successUrl, 
         })
     );
 };

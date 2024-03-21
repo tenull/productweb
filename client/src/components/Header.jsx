@@ -33,6 +33,8 @@ import { FcGoogle } from 'react-icons/fc';
 import { googleLogout } from '@react-oauth/google';
 import { FaBasketShopping } from "react-icons/fa6";
 import { searchProducts } from '../redux/actions/searchActions';
+import ScrollToTopButton from './ScrollToButton';
+import ScrollToTopOnEnter from './ScrollToTopOnEnter';
 
 const Links = [
 	{ name: 'Termékek', route: '/products' },
@@ -86,6 +88,8 @@ const Header = () => {
 			if (searchValue.trim() !== '') {
 				await dispatch(searchProducts(searchValue));
 				navigate(`/search/${searchValue}`);
+				setSearchValue('');
+				setOpenAutoComplete(false);
 			}
 		} catch (error) {
 			console.error('Error during search:', error);
@@ -96,6 +100,7 @@ const Header = () => {
 			});
 		}
 	};
+
 
 	const handleProductClick = (productId) => {
 		setSelectedProductId(productId);
@@ -130,6 +135,7 @@ const Header = () => {
 					</Text></Flex>
 
 			</Box>
+
 			<Box bg={mode(`red.300`, 'gray.900')} px='4' position='sticky' top='0' zIndex='sticky'>
 				<Flex h='16' alignItems='center' justifyContent='space-between'>
 					{/* <Flex display={{ base: 'flex', md: 'none' }} alignItems='center'>
@@ -139,7 +145,7 @@ const Header = () => {
 							icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
 							onClick={isOpen ? onClose : onOpen}
 						/> */}
-						{/* <IconButton
+					{/* <IconButton
 							ml='12'
 							position='absolute'
 							icon={<TbShoppingCart size='20px' />}
@@ -154,37 +160,45 @@ const Header = () => {
 						)} */}
 					{/*</Flex> */}
 					<HStack spacing='8' alignItems='center'>
-						<Box alignItems='center' display='flex' as={ReactLink} to='/'>
-							<Icon as={FaBasketShopping} h='5' w='4' color={mode('white', 'yellow.200')} />
-							<Text as='b' alignItems='center' color='white'> ÉVI ABC</Text>
-						</Box>
-
+						<ScrollToTopButton>
+							<Box alignItems='center' display='flex' as={ReactLink} to='/'>
+								<Icon as={FaBasketShopping} h='5' w='4' color={mode('white', 'yellow.200')} />
+								<Text as='b' alignItems='center' color='white'> ezÉvi ABC</Text>
+							</Box>
+						</ScrollToTopButton>
 						<HStack as='nav' spacing='4' display={{ base: 'none', md: 'flex' }}>
+
 							{Links.map((link) => (
-								<NavLink route={link.route} key={link.route}>
-									<Text fontWeight='medium'>{link.name}</Text>
-								</NavLink>
+								<ScrollToTopButton >
+									<NavLink route={link.route} key={link.route}>
+										<Text fontWeight='medium'>{link.name}</Text>
+									</NavLink>
+								</ScrollToTopButton>
 							))}
+
 							<Box>
-								<IconButton icon={<TbShoppingCart size='20px' />} as={ReactLink} to='/cart' variant='ghost' />
-								{cartItems.length > 0 && (
-									<Text fontWeight='bold' fontStyle='italic' position='absolute' ml='26px' mt='-6' fontSize='sm'>
-										{cartItems.length}
-									</Text>
-								)}
+								<ScrollToTopButton>
+									<IconButton icon={<TbShoppingCart size='20px' />} as={ReactLink} to='/cart' variant='ghost' />
+									</ScrollToTopButton>
+									{cartItems.length > 0 && (
+										<Text fontWeight='bold' fontStyle='italic' position='absolute' ml='26px' mt='-6' fontSize='sm'>
+											{cartItems.length}
+										</Text>
+									)}
+								
 							</Box>
 
 							<ColorModeToggle />
 							{favoritesToggled ? (
 								<IconButton
-								as={ReactLink} to='/favorites'
+									as={ReactLink} to='/favorites'
 									// onClick={() => dispatch(toggleFavorites(false))}
 									icon={<MdOutlineFavorite size='20px' />}
 									variant='ghost'
 								/>
 							) : (
 								<IconButton
-								as={ReactLink} to='/favorites'
+									as={ReactLink} to='/favorites'
 									// onClick={() => dispatch(toggleFavorites(true))}
 									icon={<MdOutlineFavoriteBorder size='20px' />}
 									variant='ghost'
@@ -192,37 +206,42 @@ const Header = () => {
 							)}
 						</HStack>
 					</HStack>
-					<Box w={{base:'50%',md:'40%'}} position="relative">
-						<InputGroup color='black'>
-							<Input
-								type="text"
-								bg='white'
-								placeholder="Keresés"
-								color='black'
-								border='1px'
-								value={searchValue}
-								onChange={(e) => handleSearchChange(e.target.value)}
-								onKeyDown={(e) => {
-									if (e.key === "Enter") {
-										handleSearchSubmit();
-									}
-								}}
-							/>
-							<InputRightElement>
-								<SearchIcon
-									aria-label="Keresés"
-									cursor='pointer'
-									icon={<SearchIcon />}
-									onClick={handleSearchSubmit}
-								/>
-							</InputRightElement>
-						</InputGroup>
+					<Box w={{ base: '50%', md: '40%' }} position="relative">
+						<ScrollToTopOnEnter>
+							<InputGroup color='black'>
 
+								<Input
+									type="text"
+									bg='white'
+									placeholder="Keresés"
+									color='black'
+									border='1px'
+									value={searchValue}
+									onChange={(e) => handleSearchChange(e.target.value)}
+									onKeyDown={(e) => {
+										if (e.key === "Enter") {
+											handleSearchSubmit();
+										}
+									}}
+								/>
+
+								<InputRightElement>
+									<ScrollToTopButton>
+										<SearchIcon
+											aria-label="Keresés"
+											cursor='pointer'
+											icon={<SearchIcon />}
+											onClick={handleSearchSubmit}
+										/>
+									</ScrollToTopButton>
+								</InputRightElement>
+							</InputGroup>
+						</ScrollToTopOnEnter>
 						{openAutoComplete && searchValue && autocompleteOptions.length > 0 && (
-							<Box className="autocomplete-box"  bg="white" boxShadow="lg" p={2} position="absolute" top="calc(100% + 8px)" left="0" width="100%">
+							<Box className="autocomplete-box" bg="white" boxShadow="lg" p={2} position="absolute" top="calc(100% + 8px)" left="0" width="100%">
 								{autocompleteOptions.map((option, index) => (
-									<Box display='flex' alignItems='center' mb={{base:0,md:'10px'}} key={index} p={2} _hover={{ bg: "gray.200" }} onClick={() => handleProductClick(option._id)}>
-										<Flex color='black' fontSize={{base:'10px',md:'16px'}}>
+									<Box display='flex' alignItems='center' mb={{ base: 0, md: '10px' }} key={index} p={2} _hover={{ bg: "gray.200" }} onClick={() => handleProductClick(option._id)}>
+										<Flex color='black' fontSize={{ base: '10px', md: '16px' }}>
 											{option.brand}  {option.name}
 											<Image
 												w='35px'
@@ -241,6 +260,7 @@ const Header = () => {
 					<Flex alignItems='center'>
 						{userInfo ? (
 							<Menu>
+
 								<MenuButton rounded='full' variant='link' cursor='pointer' minW='0' >
 									<HStack>
 										{userInfo.googleImage ? (<Image borderRadius='full' boxSize='40px' src={userInfo.googleImage} referrerPolicy='no-referrer' />) : (<BiUserCheck size='30' />)}
@@ -248,35 +268,39 @@ const Header = () => {
 										<ChevronDownIcon />
 									</HStack>
 								</MenuButton>
-								<MenuList>
-									<HStack>
-										<Text pl='3' as='i'>{userInfo.email}</Text>
-										{userInfo.googleId && <FcGoogle />}
-									</HStack>
-									<Divider py='' />
-									<MenuItem as={ReactLink} to='/order-history'>Rendelési előzmények</MenuItem>
-									<MenuItem as={ReactLink} to='/profile'>Profil</MenuItem>
-									{userInfo.isAdmin && (
-										<>
-											<MenuDivider />
-											<MenuItem as={ReactLink} to='/admin-console'>
-												<MdOutlineAdminPanelSettings />
-												<Text ml='2'>Admin felület</Text>
-											</MenuItem>
-										</>
-									)}
-									<MenuDivider />
-									<MenuItem onClick={logoutHandler}>Kijelentkezés</MenuItem>
-								</MenuList>
+								<ScrollToTopButton>
+									<MenuList>
+										<HStack>
+											<Text pl='3' as='i'>{userInfo.email}</Text>
+											{userInfo.googleId && <FcGoogle />}
+										</HStack>
+										<Divider py='' />
+										<MenuItem as={ReactLink} to='/order-history'>Rendelési előzmények</MenuItem>
+										<MenuItem as={ReactLink} to='/profile'>Profil</MenuItem>
+										{userInfo.isAdmin && (
+											<>
+												<MenuDivider />
+												<MenuItem as={ReactLink} to='/admin-console'>
+													<MdOutlineAdminPanelSettings />
+													<Text ml='2'>Admin felület</Text>
+												</MenuItem>
+											</>
+										)}
+										<MenuDivider />
+										<MenuItem onClick={logoutHandler}>Kijelentkezés</MenuItem>
+									</MenuList>
+								</ScrollToTopButton>
 							</Menu>
 						) : (
 							<Menu>
-								<MenuButton as={IconButton} variant='ghost' cursor='pointer' icon={<BiLogInCircle size='25px' />} />
-								<MenuList>
-									<MenuItem as={ReactLink} to='/login' p='2' fontWeight='400' variant='link'> Bejelentkezés</MenuItem>
-									<MenuDivider />
-									<MenuItem as={ReactLink} to='/registration' p='2' fontWeight='400' variant='link'> Regisztráció</MenuItem>
-								</MenuList>
+								<ScrollToTopButton>
+									<MenuButton as={IconButton} variant='ghost' cursor='pointer' icon={<BiLogInCircle size='25px' />} />
+									<MenuList>
+										<MenuItem as={ReactLink} to='/login' p='2' fontWeight='400' variant='link'> Bejelentkezés</MenuItem>
+										<MenuDivider />
+										<MenuItem as={ReactLink} to='/registration' p='2' fontWeight='400' variant='link'> Regisztráció</MenuItem>
+									</MenuList>
+								</ScrollToTopButton>
 							</Menu>
 						)}
 					</Flex>
@@ -310,32 +334,34 @@ const Header = () => {
 				</Box> */}
 			</Box>
 
-			<Box bg={mode(`red.300`, 'gray.900')} display={{md:'none'}} px='4' position='fixed' bottom='0' zIndex='sticky' width='100%'>
-				<Flex h='16' alignItems='center' justifyContent='center'>
-					<HStack spacing='8' alignItems='center'>
-						<HStack as='nav' spacing='4' display='flex' justifyContent=''>
-							{Links.map((link) => (
-								<NavLink route={link.route} key={link.route}>
-									<Text fontWeight='medium'>{link.name}</Text>
-								</NavLink>
-							))}
-							<Box>
-								<IconButton icon={<TbShoppingCart size='20px' />} as={ReactLink} to='/cart' variant='ghost' />
-								{cartItems.length > 0 && (
-									<Text fontWeight='bold' fontStyle='italic' position='absolute' ml='26px' mt='-6' fontSize='sm'>
-										{cartItems.length}
-									</Text>
-								)}
-							</Box>
-							<IconButton
-								as={ReactLink} to='/favorites'
+			<Box bg={mode(`red.300`, 'gray.900')} display={{ md: 'none' }} px='4' position='fixed' bottom='0' zIndex='sticky' width='100%'>
+				<ScrollToTopButton>
+					<Flex h='16' alignItems='center' justifyContent='center'>
+						<HStack spacing='8' alignItems='center'>
+							<HStack as='nav' spacing='4' display='flex' justifyContent=''>
+								{Links.map((link) => (
+									<NavLink route={link.route} key={link.route}>
+										<Text fontWeight='medium'>{link.name}</Text>
+									</NavLink>
+								))}
+								<Box>
+									<IconButton icon={<TbShoppingCart size='20px' />} as={ReactLink} to='/cart' variant='ghost' />
+									{cartItems.length > 0 && (
+										<Text fontWeight='bold' fontStyle='italic' position='absolute' ml='26px' mt='-6' fontSize='sm'>
+											{cartItems.length}
+										</Text>
+									)}
+								</Box>
+								<IconButton
+									as={ReactLink} to='/favorites'
 									// onClick={() => dispatch(toggleFavorites(false))}
 									icon={<MdOutlineFavorite size='20px' />}
 									variant='ghost'
 								/>
+							</HStack>
 						</HStack>
-					</HStack>
-				</Flex>
+					</Flex>
+				</ScrollToTopButton>
 			</Box>
 			{userInfo && !userInfo.active && showBanner && (
 				<Box>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {
     Button,
+    Image,
     Text,
     Checkbox,
     AlertDialog,
@@ -13,7 +14,7 @@ import {
 import { useDispatch } from 'react-redux';
 
 
-const ConfirmAgesAlert = ({ isOpen, onClose, cancelRef,addItem,product }) => {
+const ConfirmAgesAlert = ({ isOpen, onClose, cancelRef,addItem,product,AdultImage }) => {
 
 
 
@@ -35,8 +36,8 @@ const ConfirmAgesAlert = ({ isOpen, onClose, cancelRef,addItem,product }) => {
         <AlertDialog isOpen={isOpen} leastDestructiveRef={cancelRef} onClose={onClose}>
             <AlertDialogOverlay>
                 <AlertDialogContent>
-                    <AlertDialogHeader fontSize='lg' fontWeight='bold'>
-                       
+                    <AlertDialogHeader display="flex" justifyContent='center' fontSize='lg' fontWeight='bold'>
+                    <Image rounded='lg' w='150px' h='150px' color="red" fit='cover' src={AdultImage} fallbackSrc='https://via.placeholder.com/150' />
                     </AlertDialogHeader>
                     <AlertDialogBody>
                         <Text>

@@ -6,10 +6,10 @@ export const sendVerificationEmail = (token,email,name,id)=>{
     const html = `
     <html>
     <body>
-        <h3>Dear ${name}</h3>
-        <p>Thanks for signing up at Tech Lines!</p>
-        <p>Use the link below to verify your email</p>
-        <a href="http://localhost:3000/email-verify/${token}">Click here!</a>
+        <h3>Kedves ${name}!</h3>
+        <p>Köszönjük, hogy regisztrált az Évi ABC weboldalához!</p>
+        <p>Az alábbi link segítségével igazolja vissza e-mail címét</p>
+        <a href="http://localhost:3000/email-verify/${token}">Kattints ide!</a>
     </body>
     </html>
     `
@@ -23,14 +23,14 @@ export const sendVerificationEmail = (token,email,name,id)=>{
  const mailOptions = {
     from: 't0csa91@gmail.com',
     to:email,
-    subject: 'Verify your email address',
+    subject: 'Erősítsd meg az e-mail címed!',
     html:html
  }
  transporter.sendMail(mailOptions,function(error,info){
     if(error){
         console.log(error)
     } else {
-        console.log(`Email send to ${email}`)
+        console.log(`Email elküldve ${email}`)
         console.log(info.response)
     }
  })

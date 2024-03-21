@@ -92,7 +92,7 @@ const createNewProduct = asyncHandler(async (req, res) => {
 		res.json(products);
 	} else {
 		res.status(404);
-		throw new Error('Product could not be uploaded.');
+		throw new Error('A terméket nem sikerült feltölteni.');
 	}
 });
 
@@ -122,7 +122,7 @@ const updateProduct = asyncHandler(async (req, res) => {
 		res.json(products);
 	} else {
 		res.status(404);
-		throw new Error('Product not found.');
+		throw new Error('A termék nem található.');
 	}
 });
 
@@ -147,7 +147,7 @@ const removeProductReview = asyncHandler(async (req, res) => {
 		res.json({ products, pagination: {} });
 	} else {
 		res.status(404);
-		throw new Error('Product not found.');
+		throw new Error('A termék nem található.');
 	}
 });
 
@@ -158,7 +158,7 @@ const deleteProduct = asyncHandler(async (req, res) => {
 		res.json(product);
 	} else {
 		res.status(404);
-		throw new Error('Product not found.');
+		throw new Error('A termék nem található.');
 	}
 });
 

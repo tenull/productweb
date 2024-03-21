@@ -35,8 +35,8 @@ const loginUser = asyncHandler(async (req, res) => {
 			created: user.createdAt,
 		});
 	} else {
-		res.status(401).send('Invalid Email or Password.');
-		throw new Error('User not found.');
+		res.status(401).send('Rossz email cím vagy jelszó.');
+		throw new Error('Felhasználó nem található.');
 	}
 });
 
@@ -46,7 +46,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
 	const userExists = await User.findOne({ email });
 	if (userExists) {
-		res.status(400).send('We already have an account with that email address.');
+		res.status(400).send('Már van fiókunk ezzel az e-mail címmel.');
 	}
 
 	const user = await User.create({
@@ -73,8 +73,8 @@ const registerUser = asyncHandler(async (req, res) => {
 			createdAt: user.createdAt,
 		});
 	} else {
-		res.status(400).send('We could not register you.');
-		throw new Error('Something went wrong. Please check your information and try again.');
+		res.status(400).send('Nem tudtuk regisztrálni.');
+		throw new Error('Valami hiba történt. Kérjük, ellenőrizze adatait, és próbálja újra.');
 	}
 });
 
@@ -83,7 +83,7 @@ const verifyEmail = asyncHandler(async (req, res) => {
 	const user = req.user;
 	user.active = true;
 	await user.save();
-	res.json('Thanks for activating your account. You can close this window now.');
+	res.json('Köszönjük, hogy aktiválta fiókját. Most bezárhatja ezt az ablakot.');
 });
 
 // password reset request
@@ -94,10 +94,10 @@ const passwordResetRequest = asyncHandler(async (req, res) => {
 		if (user) {
 			const newToken = genToken(user._id);
 			sendPasswordResetEmail(newToken, user.email, user.name);
-			res.status(200).send(`We have send you a recover email to ${email}`);
+			res.status(200).send(`Visszaállítási e-mailt küldtünk a ${email} címre`);
 		}
 	} catch (error) {
-		res.status(401).send('There is not account with such an email address');
+		res.status(401).send('Nincs ilyen e-mail címmel rendelkező fiók.');
 	}
 });
 
@@ -111,12 +111,12 @@ const passwordReset = asyncHandler(async (req, res) => {
 		if (user) {
 			user.password = req.body.password;
 			await user.save();
-			res.json('Your password has been updated successfully.');
+			res.json('A jelszavad sikeresen frissítve.');
 		} else {
-			res.status(404).send('User not found.');
+			res.status(404).send('Felhasználó nem található.');
 		}
 	} catch (error) {
-		res.status(401).send('Password reset failed.');
+		res.status(401).send('A jelszó visszaállítása nem sikerült.');
 	}
 });
 
@@ -167,7 +167,7 @@ const googleLogin = asyncHandler(async (req, res) => {
 			});
 		}
 	} catch (error) {
-		res.status(404).send('Something went wrong, please try again later.');
+		res.status(404).send('Hiba történt. Később próbálja meg újra.');
 	}
 });
 
@@ -177,7 +177,7 @@ const getUserOrders = asyncHandler(async (req, res) => {
 		res.json(orders);
 	} else {
 		res.status(404);
-		throw new Error('No Orders found.');
+		throw new Error('Nem található megrendelés.');
 	}
 });
 
@@ -189,16 +189,16 @@ const getUsers = asyncHandler(async (req, res) => {
 const deleteUser = asyncHandler(async (req, res) => {
 	try {
 		const userId = req.params.id;
-		console.log("Deleting user with ID:", userId);
+		console.log("Az azonosítóval rendelkező felhasználó törlése:", userId);
 		const user = await User.findByIdAndDelete(userId); // Módosított sor
-		console.log("Deleted user:", user);
+		console.log("Törölt felhasználó:", user);
 		if (!user) {
-			return res.status(404).json({ message: 'User not found.' });
+			return res.status(404).json({ message: 'Felhasználó nem található.' });
 		}
 		res.json(user);
 	} catch (error) {
-		console.error("Error deleting user:", error);
-		res.status(500).json({ message: 'Internal server error.' });
+		console.error("Hiba történt a felhasználó törlésekor:", error);
+		res.status(500).json({ message: 'Belső Szerverhiba.' });
 	}
 });
 

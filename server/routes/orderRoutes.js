@@ -30,7 +30,7 @@ const setDelivered = asyncHandler(async (req, res) => {
 		res.json(updatedOrder);
 	} else {
 		res.status(404);
-		throw new Error('Order could not be updated.');
+		throw new Error('A rendelést nem sikerült frissíteni.');
 	}
 });
 

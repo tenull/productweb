@@ -44,7 +44,7 @@ const getAutocompleteSearch = async (req, res) => {
         if (searchQuery !== '') {
             aggregationPipeline.push({
                 $addFields: {
-                    combinedField: { $concat: ["$brand", " ", "$name"] } // Összeállítjuk a "brand" és "name" mezőket egy új mezőbe
+                    combinedField: { $concat: ["$brand", " ", "$name"] } 
                 }
             });
             aggregationPipeline.push({
@@ -52,7 +52,7 @@ const getAutocompleteSearch = async (req, res) => {
                     index: "autocomplete-index",
                     autocomplete: {
                         query: searchQuery,
-                        path: "combinedField", // Az új kombinált mezőt vizsgáljuk meg az autocompletes keresésnél
+                        path: "combinedField", 
                         prefix: true,
                         tokenOrder: 'sequential',
                         fuzzy: {

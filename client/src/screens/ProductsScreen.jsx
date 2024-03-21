@@ -5,6 +5,7 @@ import ProductCard from '../components/ProductCard';
 import { getProducts, getCategory } from '../redux/actions/productActions';
 import { ArrowLeftIcon, ArrowRightIcon } from '@chakra-ui/icons';
 import Category from '../components/Category';
+import ScrollToTopButton from '../components/ScrollToButton';
 const ProductsScreen = () => {
 	const dispatch = useDispatch();
 	const { loading, error, products, pagination, favoritesToggled } = useSelector((state) => state.product);
@@ -51,6 +52,7 @@ const ProductsScreen = () => {
 							))
 						)}
 					</Wrap>
+					<ScrollToTopButton>
 					{!favoritesToggled && (
 						<Wrap spacing='10px' justify='center' p='5'>
 							<Button colorScheme='red' onClick={() => paginationButtonClick('prev')}>
@@ -71,6 +73,7 @@ const ProductsScreen = () => {
 							</Button>
 						</Wrap>
 					)}
+					</ScrollToTopButton>
 				</Box>
 			)}
 		</>

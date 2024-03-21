@@ -7,8 +7,8 @@ export const sendPasswordResetEmail = (token,email,name)=>{
     <h3>
     Dear ${name}
     </h3>
-    <p>Please click on the link below to reset your password.</p>
-    <a href="http://localhost:3000/password-reset/${token}">Click here!</a>
+    <p>Kérjük, kattintson az alábbi linkre jelszava visszaállításához.</p>
+    <a href="http://localhost:3000/password-reset/${token}">Kattints ide!</a>
     </body>
     </html>
     `
@@ -22,7 +22,7 @@ export const sendPasswordResetEmail = (token,email,name)=>{
      const mailOptions = {
 		from: 't0csa91@gmail.com',
 		to: email,
-		subject: 'Tech Lines: Reset your password request.',
+		subject: 'Évi ABC: Állítsa vissza a jelszókérést.',
 		html: html,
 	};
 
@@ -30,7 +30,7 @@ export const sendPasswordResetEmail = (token,email,name)=>{
 		if (error) {
 			console.log(error);
 		} else {
-			console.log(`Email send to ${email}`);
+			console.log(`Email elküldve ${email}`);
 			console.log(info.response);
 		}
 	});

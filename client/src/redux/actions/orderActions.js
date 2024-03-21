@@ -14,7 +14,7 @@ export const setPayment = () => async (dispatch, getState) => {
 
     console.log(shippingAddress);
 
-    // Új opció hozzáadása: fizetési opció elküldése az axios kérésben
+   
     const newOrder = { subtotal, shipping, shippingAddress, cartItems, userInfo, paymentOption: 'withoutExpress' }; // Itt állítsd be a fizetési opciót
 
     try {

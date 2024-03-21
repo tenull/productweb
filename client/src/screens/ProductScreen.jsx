@@ -29,7 +29,8 @@ import { useEffect, useState } from 'react';
 import { addCartItem } from '../redux/actions/cartActions';
 import Star from '../components/Star';
 import { createProductReview } from '../redux/actions/productActions';
-
+import ConfirmAgesAlert from '../components/ConfirmAgesAlert';
+import AdultImage from '../Image/age18.png'
 const ProductScreen = () => {
 	const [amount, setAmount] = useState(1);
 	const { id } = useParams();
@@ -43,6 +44,7 @@ const ProductScreen = () => {
 	const [reviewBoxOpen, setReviewBoxOpen] = useState(false);
 	const { userInfo } = useSelector((state) => state.user);
 	const [buttonLoading, setButtonLoading] = useState(false);
+	const [isOpen, setIsOpen] = useState(false);
 
 	useEffect(() => {
 		dispatch(getProduct(id));
@@ -86,6 +88,14 @@ const ProductScreen = () => {
 		setButtonLoading(true);
 		dispatch(createProductReview(product._id, userInfo._id, comment, rating, title));
 	};
+
+	const handleAddToCartClick = () => {
+        if (product.category === 'alkohol') { 
+            setIsOpen(true);
+        } else {
+            addItem(product._id);
+        }
+    };
 
 	return (
 		<Wrap spacing='30px' justify='center' minHeight='100vh'>
@@ -156,7 +166,7 @@ const ProductScreen = () => {
 										variant='outline'
 										isDisabled={product.stock === 0}
 										colorScheme='red'
-										onClick={() => addItem()}>
+										onClick={() => handleAddToCartClick()}>
 										Kosárba
 									</Button>
 									<Stack width='270px'>
@@ -282,6 +292,9 @@ const ProductScreen = () => {
 					</Box>
 				)
 			)}
+					<ConfirmAgesAlert AdultImage={AdultImage} product={product} addItem={addItem} isOpen={isOpen} onClose={() => setIsOpen(false)} />
+
+			
 		</Wrap>
 	);
 };

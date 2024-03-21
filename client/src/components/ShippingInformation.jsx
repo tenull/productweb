@@ -102,7 +102,7 @@ const ShippingInformation = () => {
 							colorScheme='red'
 							w='100%'
 							as={ReactLink}
-							to='/payment'
+							to='/success'
 							onClick={formik.handleSubmit}>
 							Tovább a fizetéshez
 						</Button>

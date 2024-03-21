@@ -5,14 +5,14 @@ export const initialState = {
     error: null,
     products: [],
     product: null,
-    pagination: {}, // Lapozási adatok
+    pagination: {},
     favoritesToggled: false,
     reviewed: false,
     favorites: JSON.parse(localStorage.getItem('favorites')) ?? [],
     reviewRemoval:false,
     productUpdate:false,
-    currentPage: 1, // Aktuális oldalszám
-    totalPages: 1, // Az összes oldal száma
+    currentPage: 1, 
+    totalPages: 1, 
 };
 
 export const productsSlice = createSlice({
@@ -42,8 +42,8 @@ export const productsSlice = createSlice({
 			state.loading = false;
 			state.error = null;
 			state.pagination = payload;
-			state.currentPage = payload.currentPage; // Aktuális oldalszám beállítása
-            state.totalPages = payload.totalPages; // Az összes oldal száma beállítása
+			state.currentPage = payload.currentPage; 
+            state.totalPages = payload.totalPages; 
 		},
 		setFavorites: (state, { payload }) => {
 			state.favorites = payload;

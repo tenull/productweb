@@ -51,11 +51,11 @@ const OrderSummary = ({ checkoutSreen = false }) => {
                         {subtotal >= 10000 ? '6%' : (subtotal >= 5000 ? '3%' : 'Nincs kedvezmény')}
                     </Text>
                 </Flex>
-                <Flex justify='space-between'>
+                <Flex justify='space-between' >
                     <Text fontWeight='medium' color={mode('gray.600', 'gray.400')}>
-                        Fizetés
+                        Fizetés 
                     </Text>
-                    <Text fontWeight='medium'> {shipping && parseFloat(shipping) === 4.99 ? 'Fizetés a helyszínen, Készpénzzel' : 'Fizetés a helyszínen, Bankkártyával'}</Text>
+                    <Text fontWeight='medium'> {shipping && parseFloat(shipping) === 4.99 ? 'Készpénzzel' : 'Bankkártyával'}</Text>
                 </Flex>
                 <Flex justify='space-between'>
                     <Text fontSize='xl' fontWeight='extrabold'>
