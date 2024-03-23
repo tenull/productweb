@@ -53,7 +53,7 @@ const ShippingInformation = () => {
 						<FormControl>
 							<TextField name='address' placeholder='Utca, házszám' label='Utca, házszám' />
 							<TextField name='number' placeholder='Telefonszám' label='Telefonszám' />
-							<TextArea name='comment' placeholder='Megjegyzés szállítási idővel kapcsolatba stb.' label='Megjegyzés'/>
+							<TextArea name='comment' placeholder='Megjegyzés szállítási idővel kapcsolatban stb.' label='Megjegyzés'/>
 							{/* <Flex>
 								<Box flex='1' mr='10'>
 								<TextField name='postalCode' placeholder='Irányítószám' label='Irányítószám' />

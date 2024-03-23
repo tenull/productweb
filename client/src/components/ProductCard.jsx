@@ -86,9 +86,21 @@ const ProductCard = ({ product, loading }) => {
 					<Text noOfLines={1} fontSize='xl' display='flex' justifyContent='center' fontWeight='semibold' mt='2'>
 						{product.brand}
 					</Text>
-					<Text style={{ textAlign: 'center', textOverflow: 'ellipsis' }} noOfLines={1} fontSize='md' display='flex' justifyContent='center' fontWeight='' mt='2'>
+					<Text
+						style={{
+							textAlign: 'center',
+							height: '50px',
+							overflow: 'hidden',
+						}}
+						fontSize='md'
+						display='flex'
+						justifyContent='center'
+						fontWeight=''
+						mt='2'>
 						{product.name}
 					</Text>
+
+
 					<Text noOfLines={1} fontSize='md' color='gray.600'>
 						{product.subtitle}
 					</Text>

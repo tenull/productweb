@@ -9,26 +9,26 @@ const Contact = () => {
                 <Text fontSize='4xl' fontWeight='bold'>Kapcsolat</Text>
             </Box>
 
-            <Flex justify={{base:'center', md:'space-between'}} flexDirection={{base:'column',md:'row'}} alignItems='center' flexWrap={{base:'nowrap',md:'wrap'}}  width='90%' marginBottom='20px'>
-                <Stack spacing='4' w="300px" h='150px' display='flex' align='center' justify='center' bg={mode('red.300', 'gray.900')} rounded='10px'p='20px' position='relative'>
+            <Flex justify={{base:'center', md:'center'}} flexDirection={{base:'column',md:'row'}} alignItems='center' flexWrap={{base:'nowrap',md:'wrap'}}  width='90%' marginBottom='20px'>
+                <Stack spacing='4'  w="300px" h='150px' display='flex' align='center' justify='center' bg={mode('red.300', 'gray.900')} rounded='10px'p='20px' position='relative'>
                     <Icon  as={MdLocationOn} fontSize='50px' h='10' color={mode('black', 'yellow.200')} position='absolute' top='-15%' />
                     <Text fontWeight='bolder'>Cím</Text>
                     <Text>4080 Hajdúnánás Sarló utca 45.</Text>
                 </Stack>
-                <Stack my={{base:'25px',md:'25px'}} spacing='4' w="300px" h='150px' align='center' justify='center' bg={mode('red.300', 'gray.900')} rounded='10px'p='20px' position='relative'>
+                <Stack my={{base:'25px',md:'25px'}} mx={{base:'25px',md:'25px'}} spacing='4' w="300px" h='150px' align='center' justify='center' bg={mode('red.300', 'gray.900')} rounded='10px'p='20px' position='relative'>
                     <Icon as={MdOutlineMail} fontSize='50px' h='10' color={mode('black', 'yellow.200')} position='absolute' top='-15%'/>
                     <Text fontWeight='bolder'>Email cím</Text>
-                    <Text>t0csa91@gmail.com</Text>
+                    <Text><a href="mailto:t0csa91@gmail.com">t0csa91@gmail.com</a></Text>
                 </Stack>
                 <Stack spacing='4' w="300px" h='150px' align='center' justify='center' bg={mode('red.300', 'gray.900')} rounded='10px'p='20px' position='relative'>
                     <Icon as={MdLocalPhone} fontSize='35px' h='10' color={mode('black', 'yellow.200')} position='absolute' top='-15%'/>
                     <Text fontWeight='bolder'>Telefonszám</Text>
-                    <Text>+36 70 207 4102</Text>
+                    <Text><a href="tel:+36702074102">+36 70 207 4102</a></Text>
                 </Stack>
             </Flex>
 
             <Box display='flex' justifyContent='center' marginY='20px'>
-                <Text fontSize='4xl' fontWeight='bold'>Küldjön üzenetet</Text>
+                <Text fontSize='4xl' textAlign='center' fontWeight='bold'>Küldjön üzenetet</Text>
                 
             </Box>
 

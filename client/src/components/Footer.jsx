@@ -15,15 +15,15 @@ const Footer = () => {
                             <Icon as={TbShoppingCart} h='10' color={mode('black', 'yellow.200')} />
                             <Text fontSize='2xl' fontWeight='extrabold'>Évi ABC</Text>
                         </Flex>
-                        <Text fontWeight='bold' color='muted'>+36 70 207 4102</Text>
+                        <Text fontWeight='bold' color='muted'><a href="tel:+36702074102">+36 70 207 4102</a></Text>
                     </Stack>
                     <Stack direction={{ base: 'column-reverse', md: 'column', lg: 'row' }} align={{base:'center',md:'center'}} spacing={{ base: '12', md: '8' }}>
                         <Stack spacing='12' flex='1'>
                             <Text fontSize='sm' fontWeight='bold' textAlign='center' color='subtle'>Elérhetőségek</Text>
                             <Stack spacing='3' shouldWrapChildren direction='column'>
                                 <Text variant='link'>Cím: 4080 Hajdúnánás, Sarló utca 45.</Text>
-                                <Text variant='link'>Telefon: +36 70 207 4102</Text>
-                                <Text variant='link'>Email: t0csa91@gmail.com</Text>
+                                <Text variant='link'>Telefon:<a href="tel:+36702074102">+36 70 207 4102</a> </Text>
+                                <Text variant='link'>Email: <a href="mailto:t0csa91@gmail.com">t0csa91@gmail.com</a>  </Text>
                             </Stack>
                         </Stack>
                         <Stack spacing='12' flex='1'>
@@ -53,8 +53,7 @@ const Footer = () => {
                     &copy; {new Date().getFullYear()} Évi ABC. Minden jog fenntartva.
                 </Text>
                 <ButtonGroup variant='ghost'>
-                    <IconButton as='a' href='#' icon={<FaLinkedin fontSize='1.25rem' />} />
-                    <IconButton as='a' href='#' icon={<FaGithub fontSize='1.25rem' />} />
+                   
                     <IconButton as='a' href='#' icon={<FaFacebook fontSize='1.25rem' />} />
                 </ButtonGroup>
             </Stack>

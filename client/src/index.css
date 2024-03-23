@@ -12,3 +12,17 @@ code {
     monospace;
 }
 
+.productFilterInput {
+  background: #f5f5f5;
+  padding: 0.6rem;
+  margin: 0.2rem;
+  border-radius: 5px;
+  color: #1a202c;
+}
+.productFilterInput::placeholder {
+  color: #1a202c;
+  opacity: 1; /* Firefox */
+}
+.productFilterInput:focus {
+  outline: none;
+}
